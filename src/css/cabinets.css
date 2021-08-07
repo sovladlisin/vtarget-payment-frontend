@@ -1,0 +1,540 @@
+
+.cab-container {
+  width: 1100px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 100%;
+  background: white;
+}
+.cab-header {
+  background: #4d75a3;
+  height: 60px;
+}
+.cab-header > p {
+  float: left;
+  color: white;
+  line-height: 60px;
+  margin: 0 15px;
+  font-weight: bold;
+}
+.cab-header > p > span {
+  margin: 0 5px;
+}
+.cab-header button {
+  float: right;
+  height: 60px;
+  padding: 0 20px;
+  color: white;
+  font-size: 9pt;
+}
+.cab-header button:hover {
+  background: #294c74;
+  transition: 0.3s;
+  cursor: pointer;
+  color: white;
+}
+
+.cab-create-container-access-list-title {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 10pt;
+  font-weight: bold;
+}
+.cab-create-cabinet-access-list {
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid gainsboro;
+  border-radius: 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.cab-create-cabinet-access-list-item-owner {
+  width: calc(100% - 40px);
+  height: 60px;
+  padding: 0 20px;
+  border-bottom: 1px solid #adabab;
+}
+.cab-create-cabinet-access-list-item-owner img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  margin: 10px;
+  float: left;
+}
+.cab-create-cabinet-access-list-item-name {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  font-size: 10pt;
+  margin: 10px;
+}
+.cab-create-cabinet-access-list-item-role {
+  float: right;
+  line-height: 40px;
+  height: 40px;
+  margin: 10px;
+  font-size: 10pt;
+  color: #595959;
+}
+.cab-create-cabinet-access-list-input-container {
+  padding: 0 20px;
+  width: calc(100% - 40px);
+  height: 50px;
+  display: grid;
+  grid-template-columns: 3fr auto;
+}
+.cab-create-cabinet-access-list-input-container input {
+  background: #f4f7ff;
+  border-radius: 29px;
+  height: 30px;
+  margin: 10px;
+  padding-left: 20px;
+  font-size: 9pt;
+}
+.cab-create-cabinet-access-list-input-container button {
+  background: #386bee;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+  border-radius: 30px;
+  color: white;
+  font-size: 8pt;
+  line-height: 30px;
+  text-align: center;
+}
+.cab-body-nav {
+  height: 50px;
+  background: white;
+  padding: 20px;
+  border-bottom: 1px solid #c3c3c3;
+}
+.cab-body-nav p {
+  float: left;
+  height: 30px;
+  margin: 10px;
+  line-height: 30px;
+  font-size: 10pt;
+  text-align: right;
+}
+.cab-body-nav select {
+  background: #f4f7ff;
+  border-radius: 40px;
+  height: 30px;
+  margin: 10px;
+  font-size: 10pt;
+  color: #2a2929;
+  padding: 0 10px;
+  float: left;
+}
+.cab-body-nav input {
+  float: left;
+  height: 30px;
+  margin: 10px;
+  background: #f4f7ff;
+  border-radius: 30px;
+  padding-left: 10px;
+  font-size: 9pt;
+}
+.cab-body-cabinet-list {
+  width: calc(100% - 40px);
+  margin: 20px;
+  background: white;
+}
+.cab-body {
+  background: white;
+}
+
+.cab-create-cabinet-confirm {
+  width: 50%;
+  height: 35px;
+  line-height: 35px;
+  color: white;
+  background: #386bee;
+  font-size: 9pt;
+  border-radius: 50px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 3px #386bee;
+}
+.cab-create-cabinet-access-list-item-user {
+  height: 60px;
+  padding: 0 20px;
+  width: calc(100% - 40px);
+}
+.cab-create-cabinet-access-list-item-user img {
+  float: left;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  margin: 10px;
+}
+.cab-create-cabinet-access-list-item-user select {
+  height: 30px;
+  margin: 15px 0;
+  background: #f4f7ff;
+  border-radius: 50px;
+  font-size: 9pt;
+  padding: 0 5px;
+  float: right;
+}
+
+.cab-body-cabinet-item {
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 1px 0 gainsboro;
+  display: grid;
+  grid-template-columns: auto 40% auto auto auto auto auto auto auto auto;
+  gap: 15px;
+}
+.cab-body-cabinet-item > * {
+  height: 70px;
+  line-height: 70px;
+}
+.cab-body-cabinet-item-status {
+  width: 30px;
+  text-align: center;
+  font-size: 8pt;
+}
+
+.cab-body-cabinet-item-title {
+  line-height: unset;
+  font-size: 10pt;
+  height: min-content;
+  margin: auto 0;
+  color: #1a1a1a;
+}
+.cab-body-cabinet-item-input {
+  display: grid;
+}
+.cab-body-cabinet-item-input >* {
+}
+.cab-body-cabinet-item-input p {
+  line-height: 55px;
+  font-size: 12pt;
+  color: #32bf98;
+  font-weight: bold;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item-input span {
+  line-height: 20px;
+  font-size: 8pt;
+  color: #666464;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item-spent {
+  display: grid;
+}
+.cab-body-cabinet-item-spent p {
+  line-height: 55px;
+  font-size: 12pt;
+  color: #fb2d67;
+  font-weight: bold;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item-spent span {
+  line-height: 20px;
+  font-size: 8pt;
+  color: #666464;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item-left {
+  display: grid;
+}
+.cab-body-cabinet-item-left p {
+  line-height: 55px;
+  font-size: 12pt;
+  color: #1a1a1a;
+  font-weight: bold;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item-left span {
+  line-height: 20px;
+  font-size: 8pt;
+  color: #666464;
+  float: left;
+  text-align: center;
+  height: 35px;
+}
+.cab-body-cabinet-item > button {
+  color: #2d4379;
+  height: 40px;
+  margin: 15px 0;
+  line-height: 40px;
+  width: 40px;
+}
+.cab-body-cabinet-item > button:hover {
+  background: #2d4379;
+  color: white;
+  transition: 0.3s;
+  border-radius: 50px;
+}
+
+.cab-header button i {
+  margin: 0 5px;
+  font-size: 9pt;
+}
+
+.cab-create-cabinet-inputs {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 15px 0px;
+  margin-top: 30px;
+}
+.cab-create-cabinet-inputs label {
+  text-align: right;
+  font-size: 9pt;
+  color: #737171;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+}
+.cab-create-cabinet-inputs input {
+  background: #f4f7ff;
+  border-radius: 29px;
+  height: 30px;
+  padding-left: 10px;
+  line-height: 30px;
+  font-size: 9pt;
+}
+
+.cab-create-cabinet-access-list-item-delete {
+  float: right;
+  height: 20px;
+  margin: 20px;
+  color: #e92968;
+  width: 20px;
+  font-size: 9pt;
+  line-height: 20px;
+}
+.cab-create-cabinet-access-list-item-delete:hover {
+  background: #e92968;
+  color: white;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.cab-create-cabinet-delete {
+  display: block;
+  font-size: 9pt;
+  color: red;
+  margin: 15px auto 0 auto;
+}
+.cab-delete-cabinet-title {
+  font-size: 16pt !important;
+  width: 100% !important;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+}
+.cab-delete-cabinet-description {
+  font-size: 9pt !important;
+  font-weight: unset !important;
+  color: #163a68;
+  text-align: center;
+  margin: 30px 0;
+}
+.cab-delete-cabinet-delete-button {
+  display: block;
+  margin: 15px auto 0 auto;
+  background: #f40f70;
+  border-radius: 20px;
+  color: white;
+  font-size: 11pt;
+  width: 250px;
+  height: 35px;
+}
+.cab-delete-cabinet-cancel-button {
+  display: block;
+  margin: 10px auto 0 auto;
+  background: white;
+  border-radius: 20px;
+  color: #386bee;
+  font-size: 11pt;
+  border: 2px solid #386bee;
+  width: 250px;
+  text-align: center;
+  height: 35px;
+}
+
+.cab-money-add-title {
+  font-weight: bold;
+  font-size: 15pt;
+  margin: 0 0 30px 0;
+}
+.cab-money-add-cabinet-select-container label {
+  font-size: 9pt;
+  color: #2d4379;
+}
+.cab-money-add-cabinet-select-menu {
+  height: 60px;
+  margin: 20px 0;
+  box-shadow: 0 1px 0 #d0d0d0;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.cab-money-add-cabinet-select-menu-item {
+  width: 80%;
+  font-size: 10pt;
+  display: grid;
+  grid-template-columns: 30px auto;
+  float: left;
+}
+.cab-money-add-cabinet-select-menu-item-status {
+  width: 30px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 7pt;
+}
+.cab-money-add-cabinet-select-menu-item-name {
+  height: min-content;
+  margin: auto 0;
+  font-weight: bold;
+}
+.cab-money-add-cabinet-select-menu-arrow {
+  float: right;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  width: 30px;
+  padding: 0 10px;
+  color: #4d75a3;
+}
+.cab-money-add-credentials-input-container {
+  position: relative;
+  margin: 10px 0;
+}
+.cab-money-add-credentials-input-container input {
+  width: calc(100% - 70px);
+  background: #dee7ff;
+  border-radius: 50px;
+  padding: 5px 35px;
+  font-size: 10pt;
+  height: 30px;
+  color: #3d496a;
+}
+.cab-money-add-credentials-input-container span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  line-height: 40px;
+  font-size: 11pt;
+  width: 40px;
+  text-align: center;
+  color: #3d496aad;
+}
+.cab-money-add-rule {
+  display: grid;
+  grid-template-columns: 60px auto;
+}
+.cab-money-add-rule-toggle {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 18pt;
+  cursor: pointer;
+}
+.cab-money-add-rules {
+  margin: 15px 0;
+}
+.cab-money-add-rule p {
+  height: min-content;
+  margin: auto 0;
+  font-size: 10pt;
+  color: #2d4379;
+}
+.color-green {
+  color: #18bf80;
+}
+.cab-money-add-rule p a {
+  color: #2161ff;
+  text-decoration: underline;
+}
+.cab-money-add-results {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 15px;
+}
+.cab-money-add-results p {
+  text-align: right;
+  font-weight: bold;
+}
+.cab-money-add-submit {
+  display: block;
+  width: 45%;
+  margin: 30px auto 0 auto;
+  background: #386bee;
+  color: white;
+  box-shadow: 0 0 3px #386bee;
+  border-radius: 50px;
+  height: 40px;
+  font-size: 10pt;
+}
+
+.cab-cabinet-select-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 70%;
+  height: 80%;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 4px #737171;
+}
+.cab-cabinet-select-form-title {
+  font-weight: bold;
+  font-size: 14pt;
+  margin: 0 0 20px 0;
+}
+
+.cab-cabinet-select-form-item {
+  display: grid;
+  grid-template-columns: 30px auto;
+  height: 50px;
+  box-shadow: 0 1px 0 gainsboro;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.cab-cabinet-select-form-item-status {
+  height: 50px;
+  line-height: 50px;
+  font-size: 8pt;
+}
+.cab-cabinet-select-form-item-name {
+  font-size: 10pt;
+  height: min-content;
+  margin: auto 0;
+}
+.cab-cabinet-select-form-item:hover {
+  transition: 0.3s;
+  background: #dee7ff;
+}
+.cab-cabinet-select-form-item-selected {
+  background: #2cdcbb61;
+}
+
+.cab-money-add-cabinet-select-menu:hover {
+  transition: 0.3s;
+  background: #dee7ff;
+}

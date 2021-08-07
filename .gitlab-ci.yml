@@ -1,0 +1,66 @@
+image: node:10.13.0
+
+workflow:
+    rules:
+        - if: '$CI_COMMIT_BRANCH'
+
+
+stages:
+    - build
+    - deploy
+
+build:
+    stage: build
+    script:
+        - echo "Building deploy package"
+        - npm install
+        - CI=false npm run build
+        - echo "Build successful"
+    artifacts:
+        expire_in: 1 hour
+        paths:
+            - ./
+
+deploy_production:
+    stage: deploy
+    variables:
+        HOST: '78.47.176.17'
+        USER: 'ivan'
+        DESTINATION: '/home/ivan/creative_parser/frontend/build/'
+
+    before_script:
+        - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+        - mkdir -p ~/.ssh
+        - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+        - eval $(ssh-agent -s)
+
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - chmod 600 ~/.ssh/config
+
+    script:
+        # Creating archive
+        - tar -czf ../build.tgz .
+        - cd ../
+
+        - echo "Deploying to server"
+
+        # spending archive to remote machine
+        - scp ./build.tgz $USER@$HOST:/tmp
+
+        # Deleting previos build
+        - ssh $USER@$HOST "rm -rf /$DESTINATION/*"
+    
+        # Extracting archive
+        - ssh $USER@$HOST "tar -xzf /tmp/build.tgz -C /$DESTINATION/"
+        
+        # delete archive
+        - ssh $USER@$HOST "rm -f /tmp/lbuild.tgz"
+
+        - echo "Deployed"
+    environment:
+        name: production
+    only:
+        - master

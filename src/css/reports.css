@@ -1,0 +1,61 @@
+
+.rep-container {
+    width: 1000px;
+    margin: 20px auto;
+    max-height: 70%;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  .rep-header {
+    background: #4d75a3;
+    height: 60px;
+  }
+  .rep-header p {
+    float: left;
+    color: white;
+    line-height: 60px;
+    margin: 0 30px;
+    font-weight: bold;
+  }
+  .rep-body {
+    background: white;
+  }
+  .rep-body-nav {
+    height: 50px;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid #c3c3c3;
+  }
+  .rep-body-nav p {
+    float: left;
+    height: 30px;
+    margin: 10px;
+    line-height: 30px;
+    font-size: 10pt;
+    text-align: right;
+  }
+  .rep-body-nav select {
+    background: #f4f7ff;
+    border-radius: 40px;
+    height: 30px;
+    margin: 10px;
+    font-size: 10pt;
+    color: #2a2929;
+    padding: 0 10px;
+    float: left;
+  }
+  .rep-body-nav input {
+    float: left;
+    height: 30px;
+    margin: 10px;
+    background: #f4f7ff;
+    border-radius: 30px;
+    padding-left: 10px;
+  }
+  .rep-body-item-list {
+    max-height: 500px;
+    width: calc(100% - 40px);
+    margin: 20px;
+    background: white;
+    overflow: auto;
+  }
