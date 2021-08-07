@@ -1,412 +1,412 @@
 
 .m-home-header {
-    width: 1100px;
-    margin: 10px auto;
-    height: 100px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
-    justify-content: center;
-  }
-  .m-home-header>button {
-    float: left;
-    font-size: 13pt;
-    color: #727070;
-    height: 100px;
-    padding: 0 20px;
-  }
-  .m-home-header-account {
-    height: 100px;
-    justify-content: right;
-    display: flex;
-  }
-  .m-home-header-account img {
-    height: 40px;
-    width: 40px;
-    margin: 30px;
-    border-radius: 50px;
-    float: left;
-  }
-  
-  .m-home-header-account a {
-    float: left;
-    height: 30px;
-    margin: 35px 5px;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50px;
-    border: 1px solid #386bee;
-    padding: 0 10px;
-    font-size: 10pt;
-    color: #386bee;
-  }
-  .m-home-header-account a:hover {
-    cursor: pointer;
-    transition: 0.3s;
-    background: #386bee;
-    color: white;
-  }
-  
-.m-home-header-account>button {
-    height: 30px;
-    margin: 35px;
-    line-height: 30px;
-    color: #386bee;
-    border: 1px solid #386bee;
-    padding: 0 10px;
-    font-size: 9pt;
-    border-radius: 30px;
-  }
-  .m-home-header-account > button:hover {
-    transition: 0.3s;
-    background: #386bee;
-    color: white;
-  }
-  
-.m-home-header-account-logout {
-    margin: 35px 5px !important;
-    height: 30px !important;
-    width: 30px !important;
-    line-height: 30px !important;
-    font-size: 9pt !important;
-  }
-  
-.m-home-logo {
-    background: transparent;
-    background-repeat: no-repeat;
-    height: 30px;
-    background-size: contain;
-    margin: 35px 35px 35px 0;
-  }
-  .m-home-navigation button {
-    height: 30px;
-    margin: 35px 10px;
-    font-size: 9pt;
-    color: #6e81a6;
-  }
-  .m-home-navigation {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-  }
-  .m-home-greeting-card {
-    /*! height: 700px; */
-    width: 1100px;
-    margin: 10px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .m-home-greeting-card-h1 {
-    font-size: 20pt;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #313030;
-  }
-  .m-home-greeting-card-h1 span {
-    color: #386bee;
-    box-shadow: 0 3px 0 #386bee;
-  }
-  .m-home-greeting-card-h2 {
-    font-size: 11pt;
-    width: 70%;
-    color: #1b3e74;
-    line-height: 19px;
-    margin-top: 30px;
-  }
-  .m-home-greeting-card-email-input {
-    margin-top: 35px;
-    display: inline-block;
-    width: 75%;
-  }
-  .m-home-greeting-card-email-input input {
-    border-radius: 40px;
-    padding: 10px 10px 10px 20px;
-    font-size: 9pt;
-    width: 50%;
-    background: #e0e6ff;
-    float: left;
-  }
-  .m-home-greeting-card-email-input button {
-    float: left;
-    height: 33px;
-    width: 33px;
-    border-radius: 35px;
-    background: #386bee;
-    color: white;
-    font-size: 9pt;
-    margin-left: 7px;
-    box-shadow: 0 1px 4px #386beea6;
-  }
-  .m-home-greeting-card-rules {
-    margin-top: 50px;
-    font-size: 8pt;
-    color: #8b8787;
-    width: 60%;
-  }
-  .m-home-greeting-card-rules a {
-    color: #386bee;
-    text-decoration: underline;
-  }
-  .m-home-man-notebook {
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-  }
-  .m-home-greeting-card-left {
-    padding: 145px 0;
-  }
-  
-.m-home-footer {
-    background: #0d253c;
-    margin-top: 100px;
-    padding: 20px 0;
-    position: relative;
-  }
-  .m-home-footer-main {
-    width: 1100px;
-    margin: 0px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 30px;
-  }
-  .m-home-footer-left-top-title {
-  }
-  .m-home-footer-left-top {
-    font-size: 20pt;
-    color: white;
-    font-weight: bold;
-  }
-  .m-home-footer-left-top-title-2 {
-    margin-top: 10px;
-  }
-  .m-home-footer-left-bottom {
-    margin-top: 30px;
-  }
-  .m-home-footer-left-bottom-phone {
-    width: 100%;
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    margin: 10px 0 -5px 0;
-  }
-  .m-home-footer-left-bottom-phone > * {
-    float: left;
-    margin-right: 10px;
-    color: white;
-    font-size: 10pt;
-  }
-  .m-home-footer-left-bottom-phone i {
-    color: #678fda;
-    line-height: 30px;
-  }
-  .m-home-footer-left-bottom-email {
-    display: inline-block;
-    width: 100%;
-    color: white;
-    height: 30px;
-  }
-  .m-home-footer-left-bottom-email > * {
-    float: left;
-    line-height: 30px;
-    height: 30px;
-    margin-right: 10px;
-  }
-  .m-home-footer-left-bottom-email p {
-    font-size: 10pt;
-    line-height: 28px;
-  }
-  .m-home-footer-left-bottom-email i {
-    font-size: 10pt;
-    color: #678fda;
-    line-height: 30px;
-    height: 30px;
-  }
-  .m-home-footer-right-inputs {
-    display: grid;
-    gap: 15px;
-  }
-  .m-home-footer-right-inputs input {
-    background: none;
-    border: 2px solid #386bee;
-    border-radius: 15px;
-    color: #386bee;
-    padding: 15px 15px;
-    font-size: 10pt;
-  }
-  .m-home-footer-right-inputs textarea {
-    background: none;
-    border: 2px solid #386bee;
-    border-radius: 15px;
-    color: #386bee;
-    padding: 15px 15px;
-    font-size: 10pt;
-    resize: none;
-    height: 70px;
-    overflow: auto;
-  }
-  
-.m-home-footer-right-rules {
-    font-size: 9pt;
-    width: 365px;
-    color: #9c9c9c;
-    display: flex;
-    align-items: center;
-  }
-  .m-home-footer-right-bottom {
-    display: grid;
-    grid-template-columns: 3fr 70px;
-    margin-top: 30px;
-  }
-  .m-home-footer-right-rules a {
-    text-decoration: underline;
-    color: #386bee;
-  }
-  .m-home-footer-right-bottom button {
-    width: 50px;
-    height: 50px;
-    background: #386bee;
-    color: white;
-    border-radius: 70px;
-    box-shadow: 0 0 4px #386bee;
-  }
-  .m-home-footer-bottom-logo {
-    width: 1100px;
-    margin: 0px auto 0 auto;
-    height: 40px;
-    color: white;
-  }
-  .m-home-footer-bottom-logo >* {
-    float: left;
-  }
-  .m-home-footer-bottom-logo-company-name {
-    font-size: 15pt;
-    margin-right: 15px;
-    height: 40px;
-    line-height: 40px;
-  }
-  .m-home-footer-bottom-logo-company-address {
-    font-size: 9pt;
-    height: 40px;
-    line-height: 45px;
-  }
-  
-.m-home-card {
-    width: 300px;
-    text-align: center;
-  }
-  .m-home-card-logo {
-    height: 70px;
-    width: 70px;
-    line-height: 70px;
-    margin: 0 auto 20px auto;
-    background: #e0e6ff;
-    border-radius: 50px;
-    font-size: 19pt;
-    color: #2a5270;
-  }
-  .m-home-card-title {
-    width: 100%;
-    font-size: 14pt;
-    font-weight: bold;
-    color: #313030;
-  }
-  .m-home-card-description {
-    font-size: 9pt;
-    width: 70%;
-    margin: 20px auto 0 auto;
-    line-height: 13pt;
-    color: #373f85;
-  }
-  .m-home-cards-separator {
-    width: 1100px;
-    margin: 60px auto 0 auto;
-    position: relative;
-  }
-  .m-home-cards-separator-text {
-    width: calc(100% - 60px);
-    height: 40px;
-    background: #e0e6ff;
-    border-radius: 50px;
-    line-height: 40px;
-    padding: 0 30px;
-    font-size: 9pt;
-    color: #4d5883;
-  }
-  .m-home-cards-separator button {
-    position: absolute;
-    top: -1px;
-    right: 0;
-    height: 42px;
-    background: #386bee;
-    color: white;
-    border-radius: 50px;
-    padding: 0 30px;
-    font-size: 10pt;
-    box-shadow: 0 0 3px #386bee;
-  }
-  
-.m-home-info-cards {
-    width: 1100px;
-    margin: 60px auto 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    gap: 40px 20px;
-  }
+  width: 1100px;
+  margin: 10px auto;
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  justify-content: center;
+}
+.m-home-header>button {
+  float: left;
+  font-size: 13pt;
+  color: #727070;
+  height: 100px;
+  padding: 0 20px;
+}
+.m-home-header-account {
+  height: 100px;
+  justify-content: right;
+  display: inline-grid;
+}
+.m-home-header-account img {
+  height: 40px;
+  width: 40px;
+  margin: 30px;
+  border-radius: 50px;
+  float: left;
+}
 
-  #wave svg {
-    /*! display: inline-block; */
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: rotateX(180deg);
-    height: 300px;
-    transform: scaleX(780%);
-  }
-  #wave {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    vertical-align: middle;
-    overflow: hidden;
-    pointer-events: none;
-    position: absolute;
-    top: -60px;
-    right: 0;
-    height: 100px;
-    margin: 0;
-    padding: 0;
-    z-index: 4;
-    transform: rotateX(180deg);
-  }
-  
+.m-home-header-account a {
+  float: left;
+  height: 30px;
+  margin: 35px 5px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50px;
+  border: 1px solid #386bee;
+  padding: 0 10px;
+  font-size: 10pt;
+  color: #386bee;
+}
+.m-home-header-account a:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  background: #386bee;
+  color: white;
+}
+
+.m-home-header-account>button {
+  height: 30px;
+  margin: 35px;
+  line-height: 30px;
+  color: #386bee;
+  border: 1px solid #386bee;
+  padding: 0 10px;
+  font-size: 9pt;
+  border-radius: 30px;
+}
+.m-home-header-account > button:hover {
+  transition: 0.3s;
+  background: #386bee;
+  color: white;
+}
+
+.m-home-header-account-logout {
+  margin: 35px 5px !important;
+  height: 30px !important;
+  width: 30px !important;
+  line-height: 30px !important;
+  font-size: 9pt !important;
+}
+
+.m-home-logo {
+  background: transparent;
+  background-repeat: no-repeat;
+  height: 30px;
+  background-size: contain;
+  margin: 35px 35px 35px 0;
+}
+.m-home-navigation button {
+  height: 30px;
+  margin: 35px 10px;
+  font-size: 9pt;
+  color: #6e81a6;
+}
+.m-home-navigation {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.m-home-greeting-card {
+  /*! height: 700px; */
+  width: 1100px;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.m-home-greeting-card-h1 {
+  font-size: 20pt;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #313030;
+}
+.m-home-greeting-card-h1 span {
+  color: #386bee;
+  box-shadow: 0 3px 0 #386bee;
+}
+.m-home-greeting-card-h2 {
+  font-size: 11pt;
+  width: 70%;
+  color: #1b3e74;
+  line-height: 19px;
+  margin-top: 30px;
+}
+.m-home-greeting-card-email-input {
+  margin-top: 35px;
+  display: inline-block;
+  width: 75%;
+}
+.m-home-greeting-card-email-input input {
+  border-radius: 40px;
+  padding: 10px 10px 10px 20px;
+  font-size: 9pt;
+  width: 50%;
+  background: #e0e6ff;
+  float: left;
+}
+.m-home-greeting-card-email-input button {
+  float: left;
+  height: 33px;
+  width: 33px;
+  border-radius: 35px;
+  background: #386bee;
+  color: white;
+  font-size: 9pt;
+  margin-left: 7px;
+  box-shadow: 0 1px 4px #386beea6;
+}
+.m-home-greeting-card-rules {
+  margin-top: 50px;
+  font-size: 8pt;
+  color: #8b8787;
+  width: 60%;
+}
+.m-home-greeting-card-rules a {
+  color: #386bee;
+  text-decoration: underline;
+}
+.m-home-man-notebook {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.m-home-greeting-card-left {
+  padding: 145px 0;
+}
+
+.m-home-footer {
+  background: #0d253c;
+  margin-top: 100px;
+  padding: 20px 0;
+  position: relative;
+}
+.m-home-footer-main {
+  width: 1100px;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px;
+}
+.m-home-footer-left-top-title {
+}
+.m-home-footer-left-top {
+  font-size: 20pt;
+  color: white;
+  font-weight: bold;
+}
+.m-home-footer-left-top-title-2 {
+  margin-top: 10px;
+}
+.m-home-footer-left-bottom {
+  margin-top: 30px;
+}
+.m-home-footer-left-bottom-phone {
+  width: 100%;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  margin: 10px 0 -5px 0;
+}
+.m-home-footer-left-bottom-phone > * {
+  float: left;
+  margin-right: 10px;
+  color: white;
+  font-size: 10pt;
+}
+.m-home-footer-left-bottom-phone i {
+  color: #678fda;
+  line-height: 30px;
+}
+.m-home-footer-left-bottom-email {
+  display: inline-block;
+  width: 100%;
+  color: white;
+  height: 30px;
+}
+.m-home-footer-left-bottom-email > * {
+  float: left;
+  line-height: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.m-home-footer-left-bottom-email p {
+  font-size: 10pt;
+  line-height: 28px;
+}
+.m-home-footer-left-bottom-email i {
+  font-size: 10pt;
+  color: #678fda;
+  line-height: 30px;
+  height: 30px;
+}
+.m-home-footer-right-inputs {
+  display: grid;
+  gap: 15px;
+}
+.m-home-footer-right-inputs input {
+  background: none;
+  border: 2px solid #386bee;
+  border-radius: 15px;
+  color: #386bee;
+  padding: 15px 15px;
+  font-size: 10pt;
+}
+.m-home-footer-right-inputs textarea {
+  background: none;
+  border: 2px solid #386bee;
+  border-radius: 15px;
+  color: #386bee;
+  padding: 15px 15px;
+  font-size: 10pt;
+  resize: none;
+  height: 70px;
+  overflow: auto;
+}
+
+.m-home-footer-right-rules {
+  font-size: 9pt;
+  width: 365px;
+  color: #9c9c9c;
+  display: flex;
+  align-items: center;
+}
+.m-home-footer-right-bottom {
+  display: grid;
+  grid-template-columns: 3fr 70px;
+  margin-top: 30px;
+}
+.m-home-footer-right-rules a {
+  text-decoration: underline;
+  color: #386bee;
+}
+.m-home-footer-right-bottom button {
+  width: 50px;
+  height: 50px;
+  background: #386bee;
+  color: white;
+  border-radius: 70px;
+  box-shadow: 0 0 4px #386bee;
+}
+.m-home-footer-bottom-logo {
+  width: 1100px;
+  margin: 0px auto 0 auto;
+  height: 40px;
+  color: white;
+}
+.m-home-footer-bottom-logo >* {
+  float: left;
+}
+.m-home-footer-bottom-logo-company-name {
+  font-size: 15pt;
+  margin-right: 15px;
+  height: 40px;
+  line-height: 40px;
+}
+.m-home-footer-bottom-logo-company-address {
+  font-size: 9pt;
+  height: 40px;
+  line-height: 45px;
+}
+
+.m-home-card {
+  width: 300px;
+  text-align: center;
+}
+.m-home-card-logo {
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
+  margin: 0 auto 20px auto;
+  background: #e0e6ff;
+  border-radius: 50px;
+  font-size: 19pt;
+  color: #2a5270;
+}
+.m-home-card-title {
+  width: 100%;
+  font-size: 14pt;
+  font-weight: bold;
+  color: #313030;
+}
+.m-home-card-description {
+  font-size: 9pt;
+  width: 70%;
+  margin: 20px auto 0 auto;
+  line-height: 13pt;
+  color: #373f85;
+}
+.m-home-cards-separator {
+  width: 1100px;
+  margin: 60px auto 0 auto;
+  position: relative;
+}
+.m-home-cards-separator-text {
+  width: calc(100% - 60px);
+  height: 40px;
+  background: #e0e6ff;
+  border-radius: 50px;
+  line-height: 40px;
+  padding: 0 30px;
+  font-size: 9pt;
+  color: #4d5883;
+}
+.m-home-cards-separator button {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  height: 42px;
+  background: #386bee;
+  color: white;
+  border-radius: 50px;
+  padding: 0 30px;
+  font-size: 10pt;
+  box-shadow: 0 0 3px #386bee;
+}
+
+.m-home-info-cards {
+  width: 1100px;
+  margin: 60px auto 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  gap: 40px 20px;
+}
+
+#wave svg {
+  /*! display: inline-block; */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: rotateX(180deg);
+  height: 300px;
+  transform: scaleX(780%);
+}
+#wave {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: -60px;
+  right: 0;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  z-index: 4;
+  transform: rotateX(180deg);
+}
+
 .m-home-cards-separator button i {
-  margin: 0 0 0 10px;
+margin: 0 0 0 10px;
 }
 
 .m-popup-container {
-  position: fixed;
-  z-index: 3;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  max-width: 500px;
-  width: 80%;
-  background: white;
-  border-radius: 30px;
-  box-shadow: 0px 0px 3px #fff;
-  overflow: auto;
-  padding: 40px;
-  max-height: 80%;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+position: fixed;
+z-index: 3;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+max-width: 500px;
+width: 80%;
+background: white;
+border-radius: 30px;
+box-shadow: 0px 0px 3px #fff;
+overflow: auto;
+padding: 40px;
+max-height: 80%;
+-ms-overflow-style: none;
+scrollbar-width: none;
 }
 
 .m-popup-container-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 50px;
-  width: 50px;
-  color: #979595;
-  line-height: 50px;
-  text-align: center;
+position: absolute;
+top: 0;
+right: 0;
+height: 50px;
+width: 50px;
+color: #979595;
+line-height: 50px;
+text-align: center;
 }
