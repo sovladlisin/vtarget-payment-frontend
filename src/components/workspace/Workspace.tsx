@@ -29,8 +29,8 @@ const Workspace: React.FunctionComponent<IWorkspaceProps> = (props) => {
                 <div className='ws-header-center'>
                     <button className={selectedWindow === 1 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(1)}><i className="far fa-user-circle"></i><p>Кабинеты</p></button>
                     <button className={selectedWindow === 2 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(2)}><i className="fas fa-wallet"></i><p>Пополнения</p></button>
-                    <button className={selectedWindow === 3 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(3)}><i className="fas fa-receipt"></i><p>Отчеты</p></button>
-                    <button className={selectedWindow === 4 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(4)}><i className="fas fa-wrench"></i><p>Инструменты</p></button>
+                    <button className={selectedWindow === 3 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-receipt"></i><p>Отчеты</p></button>
+                    <button className={selectedWindow === 4 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-wrench"></i><p>Инструменты</p></button>
 
                     <div className='ws-header-account'>
                         {authState.user.token && <>
