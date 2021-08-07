@@ -68,8 +68,10 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
     const [email, setEmail] = useState('')
     const [amount, setAmount] = useState(0)
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault()
         dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
+        props.onClose()
     }
 
     return <>
@@ -149,7 +151,7 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
                             Пополнить
                         </button>
                     </> : <>
-                        <button onClick={_ => dispatch(createAlert({ message: 'Заполните форму корректно.', type: 'warning' }))} className='cab-money-add-submit cab-money-add-submit-false'>
+                        <button onClick={_ => { _.preventDefault(); dispatch(createAlert({ message: 'Заполните форму корректно.', type: 'warning' })) }} className='cab-money-add-submit cab-money-add-submit-false'>
                             Пополнить
                         </button>
                     </>}
