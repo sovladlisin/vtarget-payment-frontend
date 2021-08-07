@@ -2,34 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const URL = "http://" + window.location.host + '/'
-export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'http://vtarget-backend.herokuapp.com/'
-// export const SERVER_URL = 'http://vtarget-backend.herokuapp.com/'
-// export const SERVER_URL = 'http://127.0.0.1:8000/'
+export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'https://vtarget-payment-server.herokuapp.com/'
 
-// export const SERVER_URL = 'http://localhost:8000/'
-// Hook
 
-export const OK_CABINETS_SERVER = 'http://148.251.136.126:25230/'
 
-export const CLUSTER_FILTER_WORDS = [
-    'диплом',
-    'сертификат',
-    'лицензия',
-    'certified',
-    'specialist',
-    'специалист',
-    'эксперт',
-    'скрытые',
-    'публичные'
-]
-
-export const getDateForCompany = (date: Date) => {
-    const year = date.getFullYear() + ''
-    const month = ((date.getMonth() + 1) + '').length === 1 ? '0' + (date.getMonth() + 1) : '' + (date.getMonth() + 1)
-    const day = (date.getDate() + '').length === 1 ? '0' + date.getDate() : '' + date.getDate()
-
-    return year + '-' + month + '-' + day + ' 00:00'
-}
 
 export const useKeyPress = (targetKey) => {
 
