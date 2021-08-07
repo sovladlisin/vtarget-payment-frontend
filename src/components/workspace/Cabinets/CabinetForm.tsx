@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createAlert } from '../../../actions/alerts/alerts';
 import { createCabinet, deleteCabinet, updateCabinet } from '../../../actions/cabinets/cabinets';
 import { TCabinet, TCabinetUser } from '../../../actions/cabinets/types';
 import { RootStore } from '../../../store';
@@ -51,11 +52,13 @@ const CabinetForm: React.FunctionComponent<ICabinetFormProps> = (props) => {
 
     const onSave = () => {
         props.cabinet ? dispatch(updateCabinet(newCabinet)) : dispatch(createCabinet(newCabinet))
+        dispatch(createAlert({ message: 'Кабинет сохранен.', type: 'success' }))
         props.onClose()
     }
 
     const onDelete = () => {
         dispatch(deleteCabinet(props.cabinet.id))
+        dispatch(createAlert({ message: 'Кабинет удален.', type: 'success' }))
         props.onClose()
     }
 
