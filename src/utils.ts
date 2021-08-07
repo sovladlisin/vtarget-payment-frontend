@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const URL = "http://" + window.location.host + '/'
+export const URL = window.location.host.includes('localhost') ? "http://" + window.location.host + '/' : "https://" + window.location.host + '/'
 export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'https://vtarget-payment-server.herokuapp.com/'
 
 
