@@ -19,8 +19,11 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
-        props.onClose()
+        if (cabinetTo && cabinetFrom && exchangeAmount <= cabinetFrom.balance - cabinetFrom.spent && cabinetFrom.id != cabinetTo.id) {
+            dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
+            props.onClose()
+        }
+
     }
 
     const ref = React.useRef()
@@ -151,7 +154,7 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                             Пополнить
                         </button>
                     </> : <>
-                        <button onClick={_ => { _.preventDefault(); dispatch(createAlert({ message: 'Заполните форму корректно.', type: 'warning' })) }} className='cab-money-add-submit cab-money-add-submit-false'>
+                        <button type="submit" value="Submit" onClick={_ => { dispatch(createAlert({ message: 'Заполните форму корректно.', type: 'warning' })) }} className='cab-money-add-submit cab-money-add-submit-false'>
                             Пополнить
                         </button>
                     </>}
