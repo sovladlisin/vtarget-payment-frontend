@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 export const URL = window.location.host.includes('localhost') ? "http://" + window.location.host + '/' : "https://" + window.location.host + '/'
 export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'https://vtarget-payment-server.herokuapp.com/'
 
-
-
+export const range = (n): number[] => {
+    console.log(n)
+    // Array.range(5) --> [0,1,2,3,4]
+    return Array.apply(null, Array(n)).map((x, i) => i)
+};
 
 export const useKeyPress = (targetKey) => {
 

@@ -1,11 +1,11 @@
 import { Dispatch } from "react"
-import { AlertDispatchTypes, CLEAR_ALERTS, CREATE_ALERT } from "./types"
+import { AlertDispatchTypes, CLEAR_ALERTS, CREATE_ALERT, TAlert } from "./types"
 
 
-export const createAlert = (message: string) => (dispatch: Dispatch<AlertDispatchTypes>) => {
+export const createAlert = (alert: TAlert) => (dispatch: Dispatch<AlertDispatchTypes>) => {
     dispatch({
         type: CREATE_ALERT,
-        payload: message
+        payload: alert
     })
 }
 

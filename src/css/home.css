@@ -410,3 +410,14 @@ color: #979595;
 line-height: 50px;
 text-align: center;
 }
+
+.color-yellow {
+  color: #ed8935 !important;
+}
+
+.color-red {
+  color: #ff2e7c !important;
+}
+.color-green {
+  color: #18bf80 !important;
+}

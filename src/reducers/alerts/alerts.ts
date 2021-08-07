@@ -1,24 +1,23 @@
-import { AlertDispatchTypes, CLEAR_ALERTS, CREATE_ALERT } from "../../actions/alerts/types"
+import { AlertDispatchTypes, CLEAR_ALERTS, CREATE_ALERT, TAlert } from "../../actions/alerts/types"
 
 interface IDefaultState {
-    message: string | null
+    alerts: TAlert[]
 }
 
 const DefaultState: IDefaultState = {
-    message: null
+    alerts: []
 }
 
 export const alertsReducer = (state: IDefaultState = DefaultState, action: AlertDispatchTypes): IDefaultState => {
     switch (action.type) {
         case CREATE_ALERT:
             return {
-                message: action.payload
+                alerts: [...state.alerts, action.payload]
             }
         case CLEAR_ALERTS:
-            console.log('qwer')
             return {
                 ...state,
-                message: null
+                alerts: []
             }
 
         default:

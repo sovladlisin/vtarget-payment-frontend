@@ -12,6 +12,7 @@ import './src/css/login.css'
 import './src/css/ws-header.css'
 import './src/css/cabinets.css'
 import './src/css/additions.css'
+import './src/css/alerts.css'
 import './src/css/reports.css'
 
 import { persistStore } from 'redux-persist'
