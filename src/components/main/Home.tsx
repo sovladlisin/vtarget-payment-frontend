@@ -20,7 +20,7 @@ const Home: React.FC = (props: IAppProps) => {
 
     React.useEffect(() => {
         var href: string = window.location.href
-        href = href.replace(URL, '')
+        href = href.split('/').pop()
         if (href.length > 30)
             dispatch(extractToken())
 
