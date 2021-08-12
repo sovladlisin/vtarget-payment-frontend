@@ -27,7 +27,7 @@ const CabinetPermissionsForm: React.FunctionComponent<ICabinetPermissionsFormPro
     const cabinetState = useSelector((state: RootStore) => state.cabinets)
 
 
-    const owner: TCabinetUser = props.cabinet.client_users.find(u => u.role === 2)
+    const current_user: TCabinetUser = props.cabinet.client_users.find(u => u.vk_id === authState.user.vk_profile.vk_id)
 
     const [userVkLink, setUserVkLink] = React.useState('')
     const addUser = () => {
@@ -58,6 +58,18 @@ const CabinetPermissionsForm: React.FunctionComponent<ICabinetPermissionsFormPro
 
     }
 
+    const getRole = (i: number) => {
+        switch (i) {
+            case 0:
+                return 'Наблюдатель'
+            case 1:
+                return 'Менеджер'
+            case 2:
+                return 'Владелец'
+        }
+        return ''
+    }
+
     return <>
         <div className={'m-background' + mobileClass}></div>
 
@@ -67,9 +79,9 @@ const CabinetPermissionsForm: React.FunctionComponent<ICabinetPermissionsFormPro
 
             <div className={'cab-create-cabinet-access-list' + mobileClass}>
                 <div className={'cab-create-cabinet-access-list-item-owner' + mobileClass}>
-                    <img src={owner.photo}></img>
-                    <p className={'cab-create-cabinet-access-list-item-name' + mobileClass}>{owner.name}</p>
-                    <p className={'cab-create-cabinet-access-list-item-role' + mobileClass}>Владелец</p>
+                    <img src={current_user.photo}></img>
+                    <p className={'cab-create-cabinet-access-list-item-name' + mobileClass}>{current_user.name}</p>
+                    <p className={'cab-create-cabinet-access-list-item-role' + mobileClass}>{getRole(current_user.role)}</p>
                 </div>
                 {localPermissions.filter(user => user.vk_id != authState.user.vk_profile.vk_id).map(user => {
                     return <>
