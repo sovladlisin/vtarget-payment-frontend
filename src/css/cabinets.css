@@ -750,3 +750,12 @@
   font-weight: bold;
   font-size: 14pt;
 }
+
+.cab-create-cabinet-access-list-item-owner-role{
+  float: right;
+height: 40px;
+line-height: 40px;
+margin: 10px;
+font-size: 9pt;
+color: #232222;
+}

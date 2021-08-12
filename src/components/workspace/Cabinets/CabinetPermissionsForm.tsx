@@ -92,12 +92,18 @@ const CabinetPermissionsForm: React.FunctionComponent<ICabinetPermissionsFormPro
                             <button className={'cab-create-cabinet-access-list-item-delete' + mobileClass} onClick={_ => {
                                 setLocalPermissions(localPermissions.filter(u => u.vk_id != user.vk_id))
                             }}><i className='fas fa-times'></i></button>
-                            <select value={user.role} onChange={e =>
-                                setLocalPermissions(localPermissions.map(u => u.vk_id != user.vk_id ? u : { ...u, role: parseInt(e.target.value) }))
-                            }>
-                                <option value={1}>Менеджер</option>
-                                <option value={0}>Наблюдатель</option>
-                            </select>
+                            {user.role != 2 && <>
+                                <select value={user.role} onChange={e =>
+                                    setLocalPermissions(localPermissions.map(u => u.vk_id != user.vk_id ? u : { ...u, role: parseInt(e.target.value) }))
+                                }>
+                                    <option value={1}>Менеджер</option>
+                                    <option value={0}>Наблюдатель</option>
+                                </select>
+                            </>}
+                            {user.role === 2 && <>
+                                <span className={'cab-create-cabinet-access-list-item-owner-role'}>Владелец</span>
+                            </>}
+
 
                         </div>
                     </>
