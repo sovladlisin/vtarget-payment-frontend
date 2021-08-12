@@ -6,11 +6,21 @@ import App from './src/components/App'
 //css
 
 import './src/css/all.css'
+
 import './src/css/fixer.css'
+
 import './src/css/home.css'
+import './src/css/home-mobile.css'
+
 import './src/css/login.css'
+import './src/css/login-mobile.css'
+
 import './src/css/ws-header.css'
+import './src/css/workspace-mobile.css'
+
 import './src/css/cabinets.css'
+import './src/css/cabinets-mobile.css'
+
 import './src/css/additions.css'
 import './src/css/alerts.css'
 import './src/css/reports.css'

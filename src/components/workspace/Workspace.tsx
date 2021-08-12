@@ -8,6 +8,8 @@ import Additions from './Additions/Additions';
 import Cabinets from './Cabinets/Cabinets';
 import Reports from './Reports/Reports';
 import { Link } from 'react-router-dom'
+import { isMobile } from 'react-device-detect';
+import { useOnClickOutside } from '../utils/HandleClickOutside';
 interface IWorkspaceProps {
 }
 
@@ -17,49 +19,70 @@ const Workspace: React.FunctionComponent<IWorkspaceProps> = (props) => {
     const authState = useSelector((state: RootStore) => state.auth)
 
     useEffect(() => {
-        !authState.user.token && window.location.replace(URL)
+        authState.user.token.length === 0 && window.location.replace(URL)
+        !authState.user.vk_profile && window.location.replace(URL)
     }, [])
 
     const [selectedWindow, setSelectedWindow] = useState(1)
 
-    return <>
-        <div className='ws-container'>
-            <div className='ws-header'>
-                <Link to='/'><div className='ws-header-back'><i className='fas fa-long-arrow-alt-left'></i></div></Link>
-                <div className='ws-header-center'>
-                    <button className={selectedWindow === 1 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(1)}><i className="far fa-user-circle"></i><p>Кабинеты</p></button>
-                    <button className={selectedWindow === 2 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(2)}><i className="fas fa-wallet"></i><p>Пополнения</p></button>
-                    <button className={selectedWindow === 3 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-receipt"></i><p>Отчеты</p></button>
-                    <button className={selectedWindow === 4 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-wrench"></i><p>Инструменты</p></button>
+    const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
+    React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
-                    <div className='ws-header-account'>
-                        {authState.user.token && <>
-                            <div className='ws-header-account-info'>
-                                <p className='ws-header-account-name'>Здравствуйте, <span>{authState.user.user_name}</span></p>
-                                <p className='ws-header-account-role'>{authState.user.is_admin ? 'Администратор' : 'Пользователь'}</p>
+    const [isMobileNavWindow, setIsMobileNavWindow] = useState(false)
+    const mobileNavRef = React.useRef()
+    useOnClickOutside(mobileNavRef, () => setIsMobileNavWindow(false))
+    return <>
+        <div className={'ws-container' + mobileClass}>
+            <div className={'ws-header' + mobileClass}>
+                {!isMobile && <Link to='/'><div className={'ws-header-back' + mobileClass}><i className='fas fa-long-arrow-alt-left'></i></div></Link>}
+                <div className={'ws-header-center' + mobileClass}>
+
+                    {!isMobile && <>
+                        <button className={selectedWindow === 1 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(1)}><i className="far fa-user-circle"></i><p>Кабинеты</p></button>
+                        <button className={selectedWindow === 2 ? 'ws-header-selected' : ''} onClick={_ => setSelectedWindow(2)}><i className="fas fa-wallet"></i><p>Пополнения</p></button>
+                        <button className={selectedWindow === 3 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-receipt"></i><p>Отчеты</p></button>
+                        <button className={selectedWindow === 4 ? 'ws-header-selected' : ''} onClick={_ => { }}><i className="fas fa-wrench"></i><p>Инструменты</p></button>
+                    </>}
+                    {isMobile && <>
+                        <button onClick={_ => setIsMobileNavWindow(true)} className='ws-header-open-mobile-nav'><i className="fas fa-bars"></i></button>
+                    </>}
+                    <div className={'ws-header-account' + mobileClass}>
+                        {authState.user.is_online && <>
+                            <div className={'ws-header-account-info' + mobileClass}>
+                                <p className={'ws-header-account-name' + mobileClass}>Здравствуйте, <span>{authState.user.username}</span></p>
+                                <p className={'ws-header-account-role' + mobileClass}>{authState.user.is_admin ? 'Администратор' : 'Пользователь'}</p>
                             </div>
-                            <img src={authState.user.user_img}></img>
+                            <img src={authState.user.vk_profile ? authState.user.vk_profile.photo : 'http://mymbs.co.id/public/upload/image/user/user.png'}></img>
                         </>}
                     </div>
                 </div>
             </div>
-            <div className='ws-body'>
+            <div className={'ws-body' + mobileClass}>
                 {selectedWindow === 1 && <Cabinets />}
                 {selectedWindow === 2 && <Additions />}
                 {selectedWindow === 3 && <Reports />}
                 {selectedWindow === 4 && <></>}
             </div>
-            <div className='ws-footer'>
-                <div className='ws-footer-body'>
-                    <div className='ws-footer-logo'>ООО "ВТаргете"</div>
+            <div className={'ws-footer' + mobileClass}>
+                <div className={'ws-footer-body' + mobileClass}>
+                    <div className={'ws-footer-logo' + mobileClass}>ООО "ВТаргете"</div>
                     <Link to=''>Оферта</Link>
                     <Link to=''>Политика конфиденциальности</Link>
                     <Link to=''>Условия оплаты</Link>
                     <Link to=''>Отказ от ответственности</Link>
                 </div>
-
             </div>
         </div>
+
+        {isMobileNavWindow && <>
+            <div className='ws-nav-panel-mobile' ref={mobileNavRef}>
+                <Link to='/'><div className={'ws-nav-panel-back' + mobileClass}><i className='fas fa-long-arrow-alt-left'></i><p>Вернуться на главную</p></div></Link>
+                <button className={selectedWindow === 1 ? 'ws-nav-panel-selected' : ''} onClick={_ => { setSelectedWindow(1); setIsMobileNavWindow(false) }}><i className="far fa-user-circle"></i><p>Кабинеты</p></button>
+                <button className={selectedWindow === 2 ? 'ws-nav-panel-selected' : ''} onClick={_ => { setSelectedWindow(2); setIsMobileNavWindow(false) }}><i className="fas fa-wallet"></i><p>Пополнения</p></button>
+                <button className={selectedWindow === 3 ? 'ws-nav-panel-selected' : ''} onClick={_ => { }}><i className="fas fa-receipt"></i><p>Отчеты</p></button>
+                <button className={selectedWindow === 4 ? 'ws-nav-panel-selected' : ''} onClick={_ => { }}><i className="fas fa-wrench"></i><p>Инструменты</p></button>
+            </div>
+        </>}
     </>;
 };
 

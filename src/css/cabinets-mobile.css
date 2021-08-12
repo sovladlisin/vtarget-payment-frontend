@@ -1,0 +1,152 @@
+
+.cab-container.mobile {
+    width: 90%;
+  }
+  .cab-header.mobile {
+  }
+  .cab-body-nav.mobile p {
+    font-size: 9pt;
+    width: 40%;
+  }
+  .cab-body-nav.mobile {
+    padding: 0;
+    display: inline-table;
+    margin: 0;
+    width: 100%;
+  }
+  .cab-body-nav.mobile select {
+    width: 100px;
+    font-size: 9pt;
+  }
+  .cab-body-nav.mobile input {
+    width: 100px;
+  }
+  .cab-body-cabinet-list.mobile {
+    width: calc(100% - 10px);
+    margin: 5px;
+  }
+  .cab-body-cabinet-item.mobile {
+    display: inline-table;
+    box-shadow: 0 1px 0 #e9dddd;
+    padding: 10px 0;
+  }
+  .cab-body-cabinet-item-status.mobile {
+    width: 10%;
+    float: left;
+    height: unset;
+    line-height: 16px;
+    font-size: 6pt;
+  }
+  .cab-body-cabinet-item-title.mobile {
+    width: 90%;
+    float: left;
+    height: max-content;
+    min-height: 20px;
+  }
+  .cab-body-cabinet-item-spent.mobile {
+    width: 33%;
+    float: left;
+  }
+  .cab-body-cabinet-item-left.mobile {
+    width: 33%;
+    float: left;
+  }
+  .cab-body-cabinet-item-input.mobile {
+    width: 33%;
+    float: left;
+  }
+  .cab-body-cabinet-item.mobile > button {
+    width: 20%;
+  }
+  
+.cab-money-add-title.mobile {
+    font-size: 12pt;
+    margin: 0 0 15px 0;
+  }
+  .cab-money-add-cabinet-select-menu-item-name.mobile {
+    font-size: 8pt;
+  }
+  .cab-money-add-rule.mobile p {
+    font-size: 8pt;
+  }
+  .cab-money-add-rule-toggle.mobile {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16pt;
+  }
+  .cab-money-add-rule.mobile {
+    grid-template-columns: 40px auto;
+    gap: 10px;
+  }
+  
+.cab-money-swap-cabinet-select-menu-item-name.mobile {
+    font-size: 8pt;
+  }
+  .cab-money-swap-cabinet-select-menu-item-name-empty.mobile {
+    font-size: 10pt;
+  }
+  .cab-money-add-title-description.mobile {
+    font-size: 8pt;
+    margin: 10px 0;
+  }
+  
+.cab-create-cabinet-access-list-item-owner.mobile {
+    height: 40px;
+    padding: 0 5px;
+    width: calc(100% - 10px);
+  }
+  .cab-create-cabinet-access-list-item-owner.mobile img {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+  }
+  .cab-create-cabinet-access-list-item-owner.mobile p {
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    font-size: 8pt;
+  }
+  .cab-create-cabinet-access-list-item-user.mobile {
+    height: 40px;
+    padding: 0 5px;
+    width: calc(100% - 10px);
+  }
+  .cab-create-cabinet-access-list-item-user.mobile img {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+  }
+  .cab-create-cabinet-access-list-item-user.mobile p {
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    font-size: 8pt;
+    width: 105px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .cab-create-cabinet-access-list-item-delete.mobile {
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+  }
+  .cab-create-cabinet-access-list-item-user.mobile select {
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 7pt;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .cab-create-cabinet-access-list-item-name.mobile {
+    width: 130px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }

@@ -1,8 +1,10 @@
 export const GET_CABINETS = 'GET_CABINETS'
 export const CREATE_CABINET = 'CREATE_CABINET'
-export const UPDATE_CABINET = 'UPDATE_CABINET'
+export const UPDATE_CABINET_META = 'UPDATE_CABINET_META'
+export const UPDATE_CABINET_PERMS = 'UPDATE_CABINET_PERMS'
 export const DELETE_CABINET = 'DELETE_CABINET'
 
+export const GET_VK_USER_INFO = 'GET_VK_USER_INFO'
 
 export type TCabinet = {
     id?: number,
@@ -10,12 +12,11 @@ export type TCabinet = {
     name: string,
     spent?: number,
     balance?: number,
-    admin_id: number,
     status?: number,
     day_limit?: number,
     all_limit?: number,
 
-    user_accounts: TCabinetUser[],
+    client_users: TCabinetUser[],
 }
 
 export type TCabinetUser = {
@@ -33,14 +34,22 @@ interface IGetCabinets {
     type: typeof GET_CABINETS,
     payload: TCabinet[]
 }
-interface IUpdateCabinet {
-    type: typeof UPDATE_CABINET,
-    payload: TCabinet
+interface IUpdateCabinetMeta {
+    type: typeof UPDATE_CABINET_META,
+    payload: { id: number, name: string, day_limit: number, all_limit: number }
+}
+interface IUpdateCabinetPerms {
+    type: typeof UPDATE_CABINET_PERMS,
+    payload: { id: number, permissions: TCabinetUser[] }
 }
 interface IDeleteCabinet {
     type: typeof DELETE_CABINET,
     payload: number
 }
+interface IGetUser {
+    type: typeof GET_VK_USER_INFO,
+    payload: { link: string, user: TCabinetUser }
+}
 
 
-export type TCabinetDispatchTypes = ICreateCabinet | IGetCabinets | IUpdateCabinet | IDeleteCabinet
+export type TCabinetDispatchTypes = ICreateCabinet | IGetCabinets | IUpdateCabinetMeta | IDeleteCabinet | IGetUser | IUpdateCabinetPerms

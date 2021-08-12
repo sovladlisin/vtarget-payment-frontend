@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../../store';
 import { useEffect } from 'react';
 import { getCabinets } from '../../../actions/cabinets/cabinets';
-import CabinetForm from './CabinetForm';
 import MoneyAdditionForm from './MoneyAdditionForm';
 import { createAlert } from '../../../actions/alerts/alerts';
 import MoneyTransferForm from './MoneyTransferForm';
+import { isMobile } from 'react-device-detect';
+import CabinetMetaForm from './CabinetMetaForm';
+import CabinetPermissionsForm from './CabinetPermissionsForm';
 
 interface ICabinetsProps {
 }
@@ -25,6 +27,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
 
     const [isCreateCabinetWindow, setIsCreateCabinetWindow] = useState(false)
     const [cabinetOnEdit, setCabinetOnEdit] = useState<TCabinet>(null)
+    const [cabinetOnPermissionsEdit, setCabinetOnPermissionsEdit] = useState<TCabinet>(null)
     const [cabinetOnMoneyAddition, setCabinetOnMoneyAddition] = useState<TCabinet>(null)
     const [cabinetOnMoneyTransfer, setCabinetOnMoneyTransfer] = useState<TCabinet>(null)
 
@@ -87,15 +90,18 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
             })
     }
 
+    const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
+    React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
+
     return <>
-        <div className='cab-container'>
-            <div className='cab-header'>
-                <span style={{ backgroundImage: 'url("' + VkLogo + '")' }} className='table-vk-logo'></span>
+        <div className={'cab-container' + mobileClass}>
+            <div className={'cab-header' + mobileClass}>
+                <span style={{ backgroundImage: 'url("' + VkLogo + '")' }} className={'table-vk-logo' + mobileClass}></span>
                 <p>Рекламные кабинеты</p>
-                <button onClick={_ => setIsCreateCabinetWindow(true)}><i className='fas fa-plus-circle'></i>Создать кабинет</button>
+                <button onClick={_ => setIsCreateCabinetWindow(true)}><i className='fas fa-plus-circle'></i>{isMobile ? '' : 'Создать кабинет'}</button>
             </div>
-            <div className='cab-body'>
-                <div className='cab-body-nav'>
+            <div className={'cab-body' + mobileClass}>
+                <div className={'cab-body-nav' + mobileClass}>
                     <p>Показывать записей:</p>
                     <select onChange={e => setNumberOfItems(parseInt(e.target.value))} value={numberOfItems}>
                         <option value={5}>5</option>
@@ -114,7 +120,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                         <option value={'spent'}>Потраченные</option>
                         <option value={'left'}>Остаток</option>
                     </select>
-                    <button className='cab-body-nav-sort-order-button' onClick={_ => setSortOrder(sortOrder * -1)}>
+                    <button className={'cab-body-nav-sort-order-button' + mobileClass} onClick={_ => setSortOrder(sortOrder * -1)}>
                         {sortOrder === 1 && <i className="fas fa-sort-amount-up"></i>}
                         {sortOrder === -1 && <i className="fas fa-sort-amount-down"></i>}
 
@@ -122,7 +128,20 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                     <p>Поиск:</p>
                     <input onChange={e => setSearchString(e.target.value)} value={searchString}></input>
                 </div>
-                <div className='cab-body-cabinet-list'>
+                <div className={'cab-body-cabinet-list' + mobileClass}>
+                    {cabinetState.cabinets.length === 0 && <>
+                        <div className={'cab-empty-container'}>
+                            <span><i className='fas fa-times'></i></span>
+                            <p>Список кабинетов пуст.</p>
+                            <p>Вы можете создать новый кабинет при нажатии на кнопку "Создать кабинет"</p>
+                        </div>
+                    </>}
+                    {cabinetState.cabinets.length != 0 && processCabinets(cabinetState.cabinets).length === 0 && <>
+                        <div className={'cab-empty-container'}>
+                            <span><i className='fas fa-times'></i></span>
+                            <p>Фильтр поиска не дал результатов.</p>
+                        </div>
+                    </>}
                     {cabinetState.cabinets &&
                         processCabinets(cabinetState.cabinets)
                             .map(c => {
@@ -133,34 +152,34 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                                 status_color = c.status === 2 ? 'yellow' : status_color
 
                                 return <>
-                                    <div className='cab-body-cabinet-item'>
-                                        <div className='cab-body-cabinet-item-status'><span><i style={{ color: status_color }} className="fas fa-circle"></i></span></div>
-                                        <p className='cab-body-cabinet-item-title'>{c.name}</p>
-                                        <div className='cab-body-cabinet-item-input'>
+                                    <div className={'cab-body-cabinet-item' + mobileClass}>
+                                        <div className={'cab-body-cabinet-item-status' + mobileClass}><span><i style={{ color: status_color }} className="fas fa-circle"></i></span></div>
+                                        <p className={'cab-body-cabinet-item-title' + mobileClass}>{c.name}</p>
+                                        <div className={'cab-body-cabinet-item-input' + mobileClass}>
                                             <p>{convertMoney(c.balance)}</p>
                                             <span>Внесено</span>
                                         </div>
-                                        <div className='cab-body-cabinet-item-spent'>
+                                        <div className={'cab-body-cabinet-item-spent' + mobileClass}>
                                             <p>{convertMoney(c.spent)}</p>
                                             <span>Потрачено</span>
                                         </div>
-                                        <div className='cab-body-cabinet-item-left'>
+                                        <div className={'cab-body-cabinet-item-left' + mobileClass}>
                                             <p>{convertMoney(c.balance - c.spent)}</p>
                                             <span>Осталось</span>
                                         </div>
                                         <button title='Редактировать кабинет' onClick={_ => setCabinetOnEdit(c)}><i className='fas fa-pen'></i></button>
                                         <button title='Пополнить баланс' onClick={_ => setCabinetOnMoneyAddition(c)}><i className='far fa-credit-card'></i></button>
                                         <button title='Переместить баланс' onClick={_ => setCabinetOnMoneyTransfer(c)}><i className='fas fa-exchange-alt'></i></button>
-                                        <button title='Настройка участников' onClick={_ => setCabinetOnEdit(c)}><i className='far fa-id-badge'></i></button>
+                                        <button title='Настройка участников' onClick={_ => setCabinetOnPermissionsEdit(c)}><i className='far fa-id-badge'></i></button>
                                         <button title='Подробнее' onClick={_ => dispatch(createAlert({ message: 'Функция в реализации', type: 'notification' }))}><i className='fas fa-chevron-circle-right'></i></button>
                                     </div>
                                 </>
                             })}
                 </div>
-                {cabinetState.cabinets && <>
+                {/* {cabinetState.cabinets && <>
 
-                </>}
-                <div className='cab-page-selector'>
+                </>} */}
+                <div className={'cab-page-selector' + mobileClass}>
                     {range(Math.ceil(cabinetState.cabinets.filter(c => JSON.stringify(c).toLocaleLowerCase().includes(searchString.toLocaleLowerCase())).length / numberOfItems)).map(i => {
                         const className = i + 1 === pageNumber ? 'cab-page-selector-button-selected' : ''
                         return <button className={className} onClick={_ => setPageNumber(i + 1)}>{i + 1}</button>
@@ -170,9 +189,9 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
             </div>
         </div>
 
-        {isCreateCabinetWindow && <CabinetForm onClose={() => setIsCreateCabinetWindow(false)} />}
-
-        {cabinetOnEdit && <CabinetForm cabinet={cabinetOnEdit} onClose={() => setCabinetOnEdit(null)} />}
+        {isCreateCabinetWindow && <CabinetMetaForm onClose={() => setIsCreateCabinetWindow(false)} />}
+        {cabinetOnEdit && <CabinetMetaForm cabinet={cabinetOnEdit} onClose={() => setCabinetOnEdit(null)} />}
+        {cabinetOnPermissionsEdit && <CabinetPermissionsForm cabinet={cabinetOnPermissionsEdit} onClose={() => setCabinetOnPermissionsEdit(null)} />}
         {cabinetOnMoneyAddition && <MoneyAdditionForm cabinet={cabinetOnMoneyAddition} onClose={() => setCabinetOnMoneyAddition(null)} />}
         {cabinetOnMoneyTransfer && <MoneyTransferForm cabinet={cabinetOnMoneyTransfer} onClose={() => setCabinetOnMoneyTransfer(null)} />}
 

@@ -1,0 +1,111 @@
+
+.ws-header-center.mobile {
+    width: 90%;
+    height: 50px;
+  }
+  .ws-header.mobile {
+    height: 50px;
+  }
+  .ws-header-open-mobile-nav {
+    height: 50px !important;
+    line-height: 50px;
+    display: block !important;
+    width: 50px;
+  }
+  .ws-header-account.mobile {
+    height: 50px;
+  }
+  .ws-header-account.mobile img {
+    height: 30px;
+    margin: 10px;
+    width: 30px;
+  }
+  .ws-header-account-name.mobile {
+    height: 25px;
+    font-size: 9pt;
+    line-height: 35px;
+  }
+  .ws-header-account-role.mobile {
+    height: 25px;
+    font-size: 8pt !important;
+    line-height: 15px !important;
+  }
+  .ws-nav-panel-mobile {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: white;
+    height: 100%;
+    box-shadow: -2px 0 7px #333;
+  }
+  
+  .ws-nav-panel-back.mobile {
+    width: 200px;
+    float: left;
+    color: #2d4379;
+    display: grid;
+    height: 50px;
+    grid-template-columns: 50px auto;
+  }
+  .ws-nav-panel-mobile> button {
+    width: 200px;
+    float: left;
+    display: grid;
+    grid-template-columns: 50px auto;
+    color: #2d4379;
+  }
+  .ws-nav-panel-mobile > button > p {
+    height: 50px;
+    line-height: 50px;
+    font-size: 9pt;
+    text-align: left;
+  }
+  .ws-nav-panel-mobile > button > i {
+    height: 50px;
+    line-height: 50px;
+  }
+ 
+  .ws-nav-panel-back.mobile p {
+    font-size: 9pt;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+  }
+  .ws-nav-panel-back.mobile i {
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+  }
+  
+.ws-footer-body.mobile {
+    width: 90%;
+    display: block;
+  }
+  .ws-footer-logo.mobile {
+    width: 100%;
+    text-align: left;
+    float: unset;
+  }
+  .ws-footer-body.mobile a {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    float: unset;
+    margin: 0;
+    display: block;
+  }
+  .ws-footer.mobile {
+    height: unset;
+  }
+  .ws-nav-panel-mobile .ws-nav-panel-selected {
+    background: #2d5e8936;
+  }
+  
+.ws-header-open-mobile-nav i {
+    height: 50px !important;
+    line-height: 50px !important;
+    width: 50px;
+    padding: 0 !important;
+  }

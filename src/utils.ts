@@ -250,6 +250,7 @@ export function performVkRequest(type: 'post' | 'get', method, params, token, v)
 }
 
 export const convertMoney = (m: number) => {
+    if (!m) return '0 ₽'
     return m.toLocaleString().replace(/,/g, " ",) + '  ₽'
 }
 

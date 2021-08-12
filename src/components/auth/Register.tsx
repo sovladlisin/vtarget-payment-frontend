@@ -6,28 +6,34 @@ import VkLogo from '../../images/vk.svg'
 import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import { SERVER_URL } from '../../utils';
-import { login } from '../../actions/auth/login';
+import { register } from '../../actions/auth/login';
 
-interface ILoginProps {
-
+interface IRegisterProps {
 }
 
-const Login: React.FunctionComponent<ILoginProps> = (props) => {
+const Register: React.FunctionComponent<IRegisterProps> = (props) => {
     const dispatch = useDispatch()
 
     const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
+    const [username, setUsername] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [password2, setPassword2] = React.useState('')
 
-    const onLogin = (e) => {
+    const onRegister = (e) => {
         e.preventDefault()
-        dispatch(login(email, password))
+        dispatch(register(username, password, password2, email))
     }
 
     return <>
-        <form onSubmit={onLogin}>
+        <form onSubmit={onRegister}>
+            <div className={'m-login-input-container' + mobileClass}>
+                <span><i className="far fa-envelope"></i></span>
+
+                <input placeholder='Имя пользователя' onChange={e => setUsername(e.target.value)} value={username}></input>
+            </div>
             <div className={'m-login-input-container' + mobileClass}>
                 <span><i className="far fa-envelope"></i></span>
 
@@ -38,17 +44,16 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
 
                 <input placeholder='Пароль' onChange={e => setPassword(e.target.value)} value={password}></input>
             </div>
-            <button className={'m-login-confirm' + mobileClass}>Войти</button>
+            <div className={'m-login-input-container' + mobileClass}>
+                <span><i className="far fa-envelope"></i></span>
+
+                <input placeholder='Повторите пароль' onChange={e => setPassword2(e.target.value)} value={password2}></input>
+            </div>
+            <button className={'m-login-confirm' + mobileClass}>Зарегистрироваться</button>
         </form>
 
-        {/* <span className={'m-popup-container-close' + mobileClass} onClick={_ => props.onClose()}><i className='fas fa-times'></i></span>
-            <p className={'m-login-title' + mobileClass}>Войти в аккаунт</p>
-            <button className={'m-login-vk-login' + mobileClass} onClick={() => dispatch(login())}>
-                <span style={{ backgroundImage: 'url("' + VkLogo + '")' }} className={'m-login-vk-logo' + mobileClass}></span>
-                <span className={'m-login-vk-text' + mobileClass}>Войти через ВКонтакте</span>
-            </button> */}
 
-    </>
+    </>;
 };
 
-export default Login;
+export default Register;

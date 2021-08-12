@@ -391,7 +391,7 @@ transform: translate(-50%,-50%);
 max-width: 500px;
 width: 80%;
 background: white;
-border-radius: 30px;
+border-radius: 15px;
 box-shadow: 0px 0px 3px #fff;
 overflow: auto;
 padding: 40px;
@@ -424,4 +424,11 @@ text-align: center;
 
 .color-blue {
   color: #386bee !important;
+}
+
+.bg-vk-blue {
+  background: #4d75a3 !important;
+}
+.bg-red {
+  background: #ff2e7c !important;
 }

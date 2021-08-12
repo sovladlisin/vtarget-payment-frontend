@@ -5,6 +5,8 @@ import Alert from './alerts/Alert';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './main/Home';
 import Workspace from './workspace/Workspace';
+import ConnectVkAccount from './auth/ConnectVkAccount';
+import WorkspaceCabinetSelector from './workspace/WorkspaceCabinetSelector';
 
 
 const App: React.FC = () => {
@@ -17,6 +19,9 @@ const App: React.FC = () => {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/workspace" component={Workspace} />
+                    <Route exact path="/workspace_menu" component={WorkspaceCabinetSelector} />
+
+                    <Route exact path="/connect_vk_account" component={ConnectVkAccount} />
 
 
                 </Switch>

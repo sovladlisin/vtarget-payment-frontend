@@ -46,16 +46,16 @@
 .cab-create-cabinet-access-list {
   max-height: 200px;
   overflow: auto;
-  border: 1px solid gainsboro;
   border-radius: 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  margin: 30px auto 10px auto;
 }
 .cab-create-cabinet-access-list-item-owner {
   width: calc(100% - 40px);
   height: 60px;
   padding: 0 20px;
-  border-bottom: 1px solid #adabab;
+  border-bottom: 1px solid #d2d2d2;
 }
 .cab-create-cabinet-access-list-item-owner img {
   height: 40px;
@@ -85,6 +85,7 @@
   height: 50px;
   display: grid;
   grid-template-columns: 3fr auto;
+  margin: 10px auto;
 }
 .cab-create-cabinet-access-list-input-container input {
   background: #f4f7ff;
@@ -293,7 +294,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 15px 0px;
-  margin-top: 30px;
+  margin: 30px auto;
 }
 .cab-create-cabinet-inputs label {
   text-align: right;
@@ -724,4 +725,28 @@
   font-size: 14pt !important;
   right: 0 !important;
   left: unset !important;
+}
+
+.cab-empty-container {
+  margin: 30px auto;
+  color: #aba7a7;
+}
+.cab-empty-container span {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  display: block;
+  line-height: 70px;
+  font-size: 40pt;
+  text-align: center;
+}
+.cab-empty-container p {
+  text-align: center;
+  font-size: 10pt;
+  margin: 5px auto;
+}
+
+.cab-window-title {
+  font-weight: bold;
+  font-size: 14pt;
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { isMobile } from 'react-device-detect';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAlert } from '../../../actions/alerts/alerts';
 import { TCabinet } from '../../../actions/cabinets/types';
@@ -76,71 +77,74 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
         }
     }
 
-    return <>
-        <div className='m-background'></div>
-        <div className='m-popup-container' ref={ref}>
+    const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
+    React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
-            <p className='cab-money-add-title'>
+    return <>
+        <div className={'m-background' + mobileClass}></div>
+        <div className={'m-popup-container' + mobileClass} ref={ref}>
+
+            <p className={'cab-money-add-title' + mobileClass}>
                 Пополнить кабинет
             </p>
-            <span onClick={_ => props.onClose()} className='m-popup-container-close'><i className='fas fa-times'></i></span>
+            <span onClick={_ => props.onClose()} className={'m-popup-container-close' + mobileClass}><i className='fas fa-times'></i></span>
             <form onSubmit={onSubmit}>
-                <div className='cab-money-add-cabinet-select-container'>
+                <div className={'cab-money-add-cabinet-select-container' + mobileClass}>
                     <label>Выберите кабинет</label>
 
-                    <div className='cab-money-add-cabinet-select-menu' onClick={_ => setIsSelectCabinetWindow(true)}>
+                    <div className={'cab-money-add-cabinet-select-menu' + mobileClass} onClick={_ => setIsSelectCabinetWindow(true)}>
                         {selectedCabinet ? <>
-                            <div className='cab-money-add-cabinet-select-menu-item'>
-                                <div className='cab-money-add-cabinet-select-menu-item-status'>
+                            <div className={'cab-money-add-cabinet-select-menu-item' + mobileClass}>
+                                <div className={'cab-money-add-cabinet-select-menu-item-status' + mobileClass}>
                                     <span><i style={{ color: getCabinetStatusColor(selectedCabinet.status) }} className="fas fa-circle"></i></span>
                                 </div>
-                                <p className='cab-money-add-cabinet-select-menu-item-name'>
+                                <p className={'cab-money-add-cabinet-select-menu-item-name' + mobileClass}>
                                     {selectedCabinet.name}
                                 </p>
                             </div>
                         </> : <>
-                            <div className='cab-money-add-cabinet-select-menu-item'>
-                                <div className='cab-money-add-cabinet-select-menu-item-status'>
+                            <div className={'cab-money-add-cabinet-select-menu-item' + mobileClass}>
+                                <div className={'cab-money-add-cabinet-select-menu-item-status' + mobileClass}>
                                     <span><i style={{ color: 'gainsboro' }} className="fas fa-circle"></i></span>
                                 </div>
-                                <p className='cab-money-add-cabinet-select-menu-item-name'>
+                                <p className={'cab-money-add-cabinet-select-menu-item-name' + mobileClass}>
                                     Кабинет не выбран
                                 </p>
                             </div>
                         </>}
-                        <span className='cab-money-add-cabinet-select-menu-arrow'>
+                        <span className={'cab-money-add-cabinet-select-menu-arrow' + mobileClass}>
                             <i className='fas fa-sort-down'></i>
                         </span>
                     </div>
 
-                    <div className='cab-money-add-credentials'>
-                        <div className='cab-money-add-credentials-input-container'>
+                    <div className={'cab-money-add-credentials' + mobileClass}>
+                        <div className={'cab-money-add-credentials-input-container' + mobileClass}>
                             <span><i className="far fa-credit-card"></i></span>
-                            <input required value={amount === 0 ? '' : amount} onChange={e => setAmount(e.target.value === '' ? 0 : parseInt(e.target.value))} placeholder={'Сумма пополнения (₽)'}></input>
+                            <input required value={amount === 0 ? '' : amount} onChange={e => setAmount(e.target.value === '' ? 0 : parseInt(e.target.value))} placeholder={'Сумма пополнения (₽)' + mobileClass}></input>
                         </div>
-                        <div className='cab-money-add-credentials-input-container'>
+                        <div className={'cab-money-add-credentials-input-container' + mobileClass}>
                             <span><i className="far fa-envelope"></i></span>
-                            <input required value={email} onChange={e => setEmail(e.target.value)} type='email' placeholder={'Электронная почта'}></input>
+                            <input required value={email} onChange={e => setEmail(e.target.value)} type='email' placeholder={'Электронная почта' + mobileClass}></input>
                         </div>
                     </div>
 
-                    <div className='cab-money-add-rules'>
-                        <div className='cab-money-add-rule'>
-                            <div className='cab-money-add-rule-toggle' onClick={_ => setOfferCheck(!offerCheck)}>
+                    <div className={'cab-money-add-rules' + mobileClass}>
+                        <div className={'cab-money-add-rule' + mobileClass}>
+                            <div className={'cab-money-add-rule-toggle' + mobileClass} onClick={_ => setOfferCheck(!offerCheck)}>
                                 {offerCheck ? <span className='color-green'><i className="fas fa-toggle-on"></i></span> : <span className='color-grey'><i className="fas fa-toggle-off"></i></span>}
 
                             </div>
                             <p>Подтверждаю ознакомление и принимаю <a>все условия</a> договора-оферты</p>
                         </div>
-                        <div className='cab-money-add-rule'>
-                            <div className='cab-money-add-rule-toggle' onClick={_ => setAdvertCheck(!advertCheck)}>
+                        <div className={'cab-money-add-rule' + mobileClass}>
+                            <div className={'cab-money-add-rule-toggle' + mobileClass} onClick={_ => setAdvertCheck(!advertCheck)}>
                                 {advertCheck ? <span className='color-green'><i className="fas fa-toggle-on"></i></span> : <span className='color-grey'><i className="fas fa-toggle-off"></i></span>}
                             </div>
                             <p>Подтверждаю ознакомление и принимаю <a>правила</a> размещения рекламных объявлений в ВКонтакте</p>
                         </div>
                     </div>
 
-                    <div className='cab-money-add-results'>
+                    <div className={'cab-money-add-results' + mobileClass}>
                         <label>Сумма пополнения</label>
                         <p>{convertMoney(amount)}</p>
                         <label>Бонусы</label>
@@ -149,7 +153,7 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
                         <p className='color-green'>{convertMoney(amount + amount * 0.15)}</p>
                     </div>
                     {advertCheck && offerCheck && amount > 0 && email.length > 0 && selectedCabinet ? <>
-                        <button type="submit" value="Submit" className='cab-money-add-submit'>
+                        <button type="submit" value="Submit" className={'cab-money-add-submit' + mobileClass}>
                             Пополнить
                         </button>
                     </> : <>

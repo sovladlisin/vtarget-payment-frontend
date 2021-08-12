@@ -1,4 +1,4 @@
-import { ACCEPT_SERVICE_REQUEST, ACTIVATE_PHOTOSTOCK_ACCOUNT, APPLY_SERVICE_REQUEST, AuthDispatchTypes, CONNECT_SHUTTERSTOCK_TOKEN, CREATE_PHOTOSTOCK_ACCOUNT, DELETE_PHOTOSTOCK_ACCOUNT, DENY_SERVICE_REQUEST, DISCONNECT_SHUTTERSTOCK_TOKEN, EDIT_PHOTOSTOCK_ACCOUNT, EDIT_SERVICE_INFO, GET_ALL_USERS, GET_PHOTOSTOCK_ACCOUNTS, GET_PHOTO_DOWNLOAD_RECORDS, GET_SERVICE_INFO, GET_SERVICE_REQUESTS, GET_USER_MEDALS, LOGIN, LOGOUT, PHOTO_BAN_USER, SHUTTERSTOCK_TOKEN_CHECK, TOGGLE_USER_ADMIN_ROLE, TPhotoDownloadRecord, TPhotostockAccount, TServiceInfo, TServiceRequest, TUser } from "../../actions/auth/types";
+import { AuthDispatchTypes, GET_ALL_USERS, GET_USER_MEDALS, LOGIN, LOGOUT, TUser, UPDATE_VK_PROFILE } from "../../actions/auth/types";
 import { URL } from "../../utils";
 
 interface IDefaultState {
@@ -9,12 +9,12 @@ interface IDefaultState {
 }
 const defaultState: IDefaultState = {
     user: {
-        id: -1,
-        user_id: -1,
-        token: false,
-        user_img: '',
-        user_name: 'Ошибка входа',
+        token: '',
+        email: '',
+        username: '',
         is_admin: false,
+        is_online: false,
+        vk_profile: null
     }
 
 }
@@ -38,7 +38,11 @@ const authReducer = (state: IDefaultState = defaultState, action: AuthDispatchTy
         //     }
 
 
-
+        case UPDATE_VK_PROFILE:
+            return {
+                ...state,
+                user: { ...state.user, vk_profile: action.payload }
+            }
 
         case LOGIN:
             return {
