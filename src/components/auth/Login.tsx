@@ -9,7 +9,7 @@ import { SERVER_URL } from '../../utils';
 import { login } from '../../actions/auth/login';
 
 interface ILoginProps {
-
+    loginEmail?: string
 }
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
@@ -18,11 +18,12 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
     const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
-    const [email, setEmail] = React.useState('')
+    const [email, setEmail] = React.useState(props.loginEmail ? props.loginEmail : '')
     const [password, setPassword] = React.useState('')
 
     const onLogin = (e) => {
         e.preventDefault()
+        console.log('test')
         dispatch(login(email, password))
     }
 
@@ -31,12 +32,12 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
             <div className={'m-login-input-container' + mobileClass}>
                 <span><i className="far fa-envelope"></i></span>
 
-                <input placeholder='Электронная почта' onChange={e => setEmail(e.target.value)} value={email}></input>
+                <input required placeholder='Электронная почта' onChange={e => setEmail(e.target.value)} value={email}></input>
             </div>
             <div className={'m-login-input-container' + mobileClass}>
-                <span><i className="far fa-envelope"></i></span>
+                <span><i className="fas fa-key"></i></span>
 
-                <input placeholder='Пароль' onChange={e => setPassword(e.target.value)} value={password}></input>
+                <input required type={'password'} placeholder='Пароль' onChange={e => setPassword(e.target.value)} value={password}></input>
             </div>
             <button className={'m-login-confirm' + mobileClass}>Войти</button>
         </form>

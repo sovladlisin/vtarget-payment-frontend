@@ -32,6 +32,9 @@ const WorkspaceCabinetSelector: React.FunctionComponent<IWorkspaceCabinetSelecto
         dispatch(createAlert({ type: 'notification', message: 'В разработке.' }))
     }
 
+    const getName = () => authState.user.vk_profile ? authState.user.vk_profile.name : authState.user.username
+    const getPicture = () => authState.user.vk_profile ? authState.user.vk_profile.photo : 'http://mymbs.co.id/public/upload/image/user/user.png'
+
     return <>
         <div className={'ws-container' + mobileClass}>
 
@@ -41,10 +44,10 @@ const WorkspaceCabinetSelector: React.FunctionComponent<IWorkspaceCabinetSelecto
                     <div className={'ws-header-account' + mobileClass}>
                         {authState.user.is_online && <>
                             <div className={'ws-header-account-info' + mobileClass}>
-                                <p className={'ws-header-account-name' + mobileClass}>Здравствуйте, <span>{authState.user.username}</span></p>
+                                <p className={'ws-header-account-name' + mobileClass}>Здравствуйте, <span>{getName()}</span></p>
                                 <p className={'ws-header-account-role' + mobileClass}>{authState.user.is_admin ? 'Администратор' : 'Пользователь'}</p>
                             </div>
-                            <img src={authState.user.vk_profile ? authState.user.vk_profile.photo : 'http://mymbs.co.id/public/upload/image/user/user.png'}></img>
+                            <Link to='/credentials'><img src={getPicture()}></img></Link>
                         </>}
                     </div>
                 </div>
@@ -86,7 +89,7 @@ const WorkspaceCabinetSelector: React.FunctionComponent<IWorkspaceCabinetSelecto
                         </Link>
                     </div>
                     <div className={'ws-body-container' + mobileClass}>
-                        <p className={'ws-body-container-secondary-title'}>Подключить другие кабинеты</p>
+                        <p className={'ws-body-container-secondary-title' + mobileClass}>Подключить другие кабинеты</p>
                         <Link><button></button></Link>
                         <Link><button></button></Link>
                         <Link><button></button></Link>

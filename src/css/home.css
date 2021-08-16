@@ -95,7 +95,7 @@
   grid-template-columns: 1fr 1fr;
 }
 .m-home-greeting-card-h1 {
-  font-size: 20pt;
+  font-size: 22pt;
   font-weight: bold;
   margin: 20px 0;
   color: #313030;
@@ -105,7 +105,7 @@
   box-shadow: 0 3px 0 #386bee;
 }
 .m-home-greeting-card-h2 {
-  font-size: 11pt;
+  font-size: 10pt;
   width: 70%;
   color: #1b3e74;
   line-height: 19px;
@@ -136,10 +136,10 @@
   box-shadow: 0 1px 4px #386beea6;
 }
 .m-home-greeting-card-rules {
-  margin-top: 50px;
+  margin-top: 80px;
   font-size: 8pt;
   color: #8b8787;
-  width: 60%;
+  width: 67%;
 }
 .m-home-greeting-card-rules a {
   color: #386bee;
@@ -170,7 +170,7 @@
 .m-home-footer-left-top-title {
 }
 .m-home-footer-left-top {
-  font-size: 20pt;
+  font-size: 25pt;
   color: white;
   font-weight: bold;
 }
@@ -191,17 +191,19 @@
   float: left;
   margin-right: 10px;
   color: white;
-  font-size: 10pt;
+  font-size: 14pt;
 }
 .m-home-footer-left-bottom-phone i {
-  color: #678fda;
+  color: #61798e;
   line-height: 30px;
+  font-size: 16pt;
 }
 .m-home-footer-left-bottom-email {
   display: inline-block;
   width: 100%;
   color: white;
   height: 30px;
+  margin-top: 15px;
 }
 .m-home-footer-left-bottom-email > * {
   float: left;
@@ -210,12 +212,12 @@
   margin-right: 10px;
 }
 .m-home-footer-left-bottom-email p {
-  font-size: 10pt;
+  font-size: 14pt;
   line-height: 28px;
 }
 .m-home-footer-left-bottom-email i {
-  font-size: 10pt;
-  color: #678fda;
+  font-size: 16pt !important;
+  color: #61798e;
   line-height: 30px;
   height: 30px;
 }
@@ -245,14 +247,14 @@
 
 .m-home-footer-right-rules {
   font-size: 9pt;
-  width: 365px;
+  width: 390px;
   color: #9c9c9c;
   display: flex;
   align-items: center;
 }
 .m-home-footer-right-bottom {
   display: grid;
-  grid-template-columns: 3fr 70px;
+  grid-template-columns: 4fr 70px;
   margin-top: 30px;
 }
 .m-home-footer-right-rules a {
@@ -281,6 +283,7 @@
   margin-right: 15px;
   height: 40px;
   line-height: 40px;
+  font-weight: bold;
 }
 .m-home-footer-bottom-logo-company-address {
   font-size: 9pt;

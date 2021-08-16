@@ -21,6 +21,9 @@ import './src/css/workspace-mobile.css'
 import './src/css/cabinets.css'
 import './src/css/cabinets-mobile.css'
 
+import './src/css/account.css'
+import './src/css/account-mobile.css'
+
 import './src/css/additions.css'
 import './src/css/alerts.css'
 import './src/css/reports.css'

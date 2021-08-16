@@ -6,12 +6,13 @@ import Register from './Register';
 
 interface IAuthWindowProps {
     onClose: () => void,
-
+    loginMode: boolean,
+    loginEmail?: string
 }
 
 const AuthWindow: React.FunctionComponent<IAuthWindowProps> = (props) => {
 
-    const [loginMode, setLoginMode] = React.useState(false)
+    const [loginMode, setLoginMode] = React.useState(props.loginMode)
 
     const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
@@ -25,8 +26,8 @@ const AuthWindow: React.FunctionComponent<IAuthWindowProps> = (props) => {
 
             <span className={'m-popup-container-close' + mobileClass} onClick={_ => props.onClose()}><i className='fas fa-times'></i></span>
             <p className={'m-login-title' + mobileClass}>{loginMode ? 'Войти в аккаунт' : 'Регистрация'}</p>
-            {loginMode && <Login />}
-            {!loginMode && <Register />}
+            {loginMode && <Login loginEmail={props.loginEmail} />}
+            {!loginMode && <Register loginEmail={props.loginEmail} />}
             <button className={'m-login-switch-button' + mobileClass} onClick={_ => setLoginMode(!loginMode)}>{loginMode ? 'Создать аккаунт' : 'Уже есть аккаунт?'}</button>
         </div>
     </>;

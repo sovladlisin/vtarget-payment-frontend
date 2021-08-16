@@ -7,6 +7,7 @@ import Home from './main/Home';
 import Workspace from './workspace/Workspace';
 import ConnectVkAccount from './auth/ConnectVkAccount';
 import WorkspaceCabinetSelector from './workspace/WorkspaceCabinetSelector';
+import AccountCredentials from './auth/AccountCredentials';
 
 
 const App: React.FC = () => {
@@ -22,6 +23,8 @@ const App: React.FC = () => {
                     <Route exact path="/workspace_menu" component={WorkspaceCabinetSelector} />
 
                     <Route exact path="/connect_vk_account" component={ConnectVkAccount} />
+
+                    <Route exact path="/credentials" component={AccountCredentials} />
 
 
                 </Switch>

@@ -46,6 +46,20 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
     const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
+    const exchangeAmountCheck = () => {
+        if (cabinetFrom && exchangeAmount > 0 && exchangeAmount > cabinetFrom.balance - cabinetFrom.spent)
+            return true
+        if (!cabinetFrom && exchangeAmount > 0 && exchangeAmount > 4305621)
+            return true
+        return false
+    }
+
+    const formValidation = () => {
+        if (exchangeAmountCheck && cabinetFrom != cabinetTo)
+            return true
+        return false
+    }
+
     return <>
         <div className={'m-background' + mobileClass}></div>
         <div className={'m-popup-container' + mobileClass} ref={ref}>
@@ -78,12 +92,17 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                             </div>
                         </> : <>
                             <div className={'cab-money-swap-cabinet-select-menu-item' + mobileClass}>
-                                <div className={'cab-money-swap-cabinet-select-menu-item-status-empty' + mobileClass}>
-                                    <span><i className="fas fa-circle color-grey"></i></span>
+                                <div className={'cab-money-swap-cabinet-select-menu-item-description' + mobileClass}>
+                                    <div className={'cab-money-swap-cabinet-select-menu-item-status' + mobileClass}>
+                                        <span><i style={{ color: getCabinetStatusColor(1) }} className="fas fa-circle"></i></span>
+                                    </div>
+                                    <p className={'cab-money-swap-cabinet-select-menu-item-name' + mobileClass}>
+                                        {'Персональный счет'}
+                                    </p>
                                 </div>
-                                <p className={'cab-money-swap-cabinet-select-menu-item-name-empty' + mobileClass}>
-                                    Кабинет не выбран
-                                </p>
+                                <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
+                                    {convertMoney(4305621)}
+                                </div>
                             </div>
                         </>}
 
@@ -118,12 +137,17 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                             </div>
                         </> : <>
                             <div className={'cab-money-swap-cabinet-select-menu-item' + mobileClass}>
-                                <div className={'cab-money-swap-cabinet-select-menu-item-status-empty' + mobileClass}>
-                                    <span><i className="fas fa-circle color-grey"></i></span>
+                                <div className={'cab-money-swap-cabinet-select-menu-item-description' + mobileClass}>
+                                    <div className={'cab-money-swap-cabinet-select-menu-item-status' + mobileClass}>
+                                        <span><i style={{ color: getCabinetStatusColor(1) }} className="fas fa-circle"></i></span>
+                                    </div>
+                                    <p className={'cab-money-swap-cabinet-select-menu-item-name' + mobileClass}>
+                                        {'Персональный счет'}
+                                    </p>
                                 </div>
-                                <p className={'cab-money-swap-cabinet-select-menu-item-name-empty' + mobileClass}>
-                                    Кабинет не выбран
-                                </p>
+                                <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
+                                    {convertMoney(4305621)}
+                                </div>
                             </div>
                         </>}
 
@@ -139,21 +163,22 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                         <span><i className="fas fa-exchange-alt"></i></span>
                         <input required value={exchangeAmount === 0 ? '' : exchangeAmount} onChange={e => setExchangeAmount(e.target.value === '' ? 0 : parseInt(e.target.value))} placeholder={'Сумма перевода (₽)' + mobileClass}></input>
 
-                        {cabinetFrom && exchangeAmount > 0 && exchangeAmount > cabinetFrom.balance - cabinetFrom.spent && <>
-                            <span className={'cab-money-swap-input-container-alert-text color-red' + mobileClass}>
-                                Сумма перевода больше, чем доступно в кабинете
-                            </span>
-                            <span className={'cab-money-swap-input-container-alert-icon color-red' + mobileClass}>
-                                <i className='fas fa-exclamation-circle'></i>
-                            </span>
-                        </>}
+                        {exchangeAmountCheck()
+                            && <>
+                                <span className={'cab-money-swap-input-container-alert-text color-red' + mobileClass}>
+                                    Сумма перевода больше, чем доступно в кабинете
+                                </span>
+                                <span className={'cab-money-swap-input-container-alert-icon color-red' + mobileClass}>
+                                    <i className='fas fa-exclamation-circle'></i>
+                                </span>
+                            </>}
 
 
                     </div>
 
 
 
-                    {cabinetTo && cabinetFrom && exchangeAmount <= cabinetFrom.balance - cabinetFrom.spent && cabinetFrom.id != cabinetTo.id ? <>
+                    {formValidation() ? <>
                         <button type="submit" value="Submit" className={'cab-money-add-submit' + mobileClass}>
                             Пополнить
                         </button>

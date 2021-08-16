@@ -1,0 +1,20 @@
+
+.acc-manage-container.mobile {
+    width: 90%;
+    padding: 5px;
+  }
+  .acc-manage-title.mobile {
+    font-size: 10pt;
+  }
+  .acc-manage-logout.mobile {
+    font-size: 8pt;
+  }
+  .acc-manage-inputs-separator.mobile {
+    font-size: 10pt;
+  }
+  .acc-manage-change-email-container.mobile input {
+    width: 70%;
+  }
+  .acc-manage-change-password-container.mobile input {
+    width: 70%;
+  }

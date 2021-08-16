@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { SERVER_URL, URL } from "../../utils";
 import { AuthDispatchTypes, GET_ALL_USERS, LOGIN, LOGOUT, TUser, UPDATE_VK_PROFILE } from "./types";
 import axios from "axios";
-import { CREATE_ALERT } from "../alerts/types";
+import { AlertDispatchTypes, CREATE_ALERT } from "../alerts/types";
 import store from "../../store";
 
 
@@ -40,7 +40,6 @@ export const extractToken = () => (dispatch: Dispatch<AuthDispatchTypes>) => {
     const body = JSON.stringify({ vk_id: user_id, token: access_token })
 
     axios.post(SERVER_URL + 'api/auth/connectVkProfile', body, params).then(res => {
-        console.log(res)
         dispatch({
             type: UPDATE_VK_PROFILE,
             payload: res.data
@@ -52,27 +51,92 @@ export const extractToken = () => (dispatch: Dispatch<AuthDispatchTypes>) => {
     })
 }
 
-export const login = (username: string, password: string) => (dispatch: Dispatch<AuthDispatchTypes>) => {
+export const login = (username: string, password: string) => (dispatch: Dispatch<AuthDispatchTypes | AlertDispatchTypes>) => {
     axios.post(SERVER_URL + 'api/auth/login', { username, password }).then(res => {
         if (res.data.response === 'Success') {
             dispatch({
                 type: LOGIN,
                 payload: res.data
             })
+            dispatch({
+                type: CREATE_ALERT,
+                payload: { type: 'success', message: 'Вход выполнен.' }
+            })
             window.location.replace(URL + 'workspace_menu')
+            console.log('2')
         }
+    }).catch(err => {
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Неправильное имя пользователя или пароль.' }
+        })
     })
 }
 
-export const register = (username: string, password: string, password2: string, email: string) => (dispatch: Dispatch<AuthDispatchTypes>) => {
-    axios.post(SERVER_URL + 'api/auth/register', { username: username, email: email, password: password, password2: password2 }).then(res => {
+export const changeEmailCredentials = (password: string, new_email: string) => (dispatch: Dispatch<AuthDispatchTypes | AlertDispatchTypes>) => {
+    const params = withToken()
+
+    axios.post(SERVER_URL + 'api/auth/changeEmailCredentials', { password, new_email }, params).then(res => {
         if (res.data.response === 'Success') {
             dispatch({
                 type: LOGIN,
                 payload: res.data
             })
+            dispatch({
+                type: CREATE_ALERT,
+                payload: { type: 'success', message: 'Данные изменены.' }
+            })
+            window.location.replace(URL + 'workspace_menu')
+        }
+    }).catch(err => {
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Неправильно введен пароль.' }
+        })
+    })
+}
+export const changePasswordCredentials = (password: string, new_password: string) => (dispatch: Dispatch<AuthDispatchTypes | AlertDispatchTypes>) => {
+    const params = withToken()
+
+    axios.post(SERVER_URL + 'api/auth/changePasswordCredentials', { password, new_password }, params).then(res => {
+        if (res.data.response === 'Success') {
+            dispatch({
+                type: LOGIN,
+                payload: res.data
+            })
+            dispatch({
+                type: CREATE_ALERT,
+                payload: { type: 'success', message: 'Данные изменены.' }
+            })
+            window.location.replace(URL + 'workspace_menu')
+        }
+    }).catch(err => {
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Неправильно введен пароль.' }
+        })
+    })
+}
+
+
+export const register = (password: string, password2: string, email: string) => (dispatch: Dispatch<AuthDispatchTypes>) => {
+    axios.post(SERVER_URL + 'api/auth/register', { email: email, password: password, password2: password2 }).then(res => {
+        if (res.data.response === 'Success') {
+            dispatch({
+                type: LOGIN,
+                payload: res.data
+            })
+            dispatch({
+                type: CREATE_ALERT,
+                payload: { type: 'success', message: 'Аккаунт создан.' }
+            })
             window.location.replace(URL + 'workspace')
         }
+    }).catch(err => {
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Пользователь с такой почтой уже существует.' }
+        })
     })
 }
 

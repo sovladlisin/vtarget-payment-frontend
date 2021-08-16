@@ -32,7 +32,7 @@ const Home: React.FC = (props: IAppProps) => {
     }, [])
 
     const [isLoginWindow, setIsLoginWindow] = useState(false)
-
+    const [isRegisterWindow, setIsRegisterWindow] = useState(false)
     const cardsRef = useRef(null)
     const paymentRef = useRef(null)
     const contactRef = useRef(null)
@@ -43,6 +43,35 @@ const Home: React.FC = (props: IAppProps) => {
     const [mobileClass, setMobileClass] = useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
+    const [loginEmail, setLoginEmail] = useState('')
+    const [loginBufferEmail, setLoginBufferEmail] = useState('')
+
+    const onEnterSubmit = (e) => {
+        e.preventDefault()
+        if (authState.user.is_online) {
+            window.location.replace(URL + 'workspace_menu/')
+        }
+        else {
+            setLoginEmail(loginBufferEmail)
+            setIsRegisterWindow(true)
+        }
+    }
+
+    const closeAuthWindows = () => {
+        setLoginEmail('')
+        setIsRegisterWindow(false)
+        setIsLoginWindow(false)
+    }
+
+    const onStartClick = () => {
+        if (authState.user.is_online) {
+            window.location.replace(URL + 'workspace_menu/')
+        }
+        else {
+            setIsRegisterWindow(true)
+        }
+    }
+
     return <>
         <div className='m-home'>
 
@@ -52,7 +81,7 @@ const Home: React.FC = (props: IAppProps) => {
 
 
                 <div className={'m-home-navigation' + mobileClass}>
-                    <button onClick={scrollToCards}>Преймущества</button>
+                    <button onClick={scrollToCards}>Преимущества</button>
                     <button>Способы получения</button>
                     <button onClick={scrollToContact}>Контакты</button>
                 </div>
@@ -74,8 +103,10 @@ const Home: React.FC = (props: IAppProps) => {
                     <p className={'m-home-greeting-card-h1' + mobileClass}>Удобное и выгодное пополнение <span>рекламных</span> кабинетов</p>
                     <p className={'m-home-greeting-card-h2' + mobileClass}>Пополняй баланс в кабинете в пару кликов и получай подробную статистику кампаний и объявлений </p>
                     <div className={'m-home-greeting-card-email-input' + mobileClass}>
-                        <input placeholder='Введите почту, чтобы начать'></input>
-                        <button><i className='fas fa-chevron-right'></i></button>
+                        <form onSubmit={onEnterSubmit}>
+                            <input required type={'email'} placeholder='Введите почту, чтобы начать' value={loginBufferEmail} onChange={e => setLoginBufferEmail(e.target.value)}></input>
+                            <button><i className='fas fa-chevron-right'></i></button>
+                        </form>
                     </div>
                     <div className={'m-home-greeting-card-rules' + mobileClass}>
                         <p>Нажимая "Зарегистрироваться", вы соглашаетесь с <a>Условиями, Политикой безопасности</a> и подтверждаете свое согласие на обработку персональных данных</p>
@@ -137,7 +168,7 @@ const Home: React.FC = (props: IAppProps) => {
 
             <div className={'m-home-cards-separator' + mobileClass}>
                 <div className={'m-home-cards-separator-text' + mobileClass}>Начните выгодно пополнять рекламные кампании в интернете</div>
-                <button>Начать работу <i className='fas fa-chevron-right'></i></button>
+                <button onClick={onStartClick}>Начать работу <i className='fas fa-chevron-right'></i></button>
             </div>
 
 
@@ -191,7 +222,8 @@ const Home: React.FC = (props: IAppProps) => {
 
         </div>
 
-        {isLoginWindow && <AuthWindow onClose={() => setIsLoginWindow(false)} />}
+        {isLoginWindow && <AuthWindow loginEmail={loginEmail.length > 0 ? loginEmail : null} loginMode={true} onClose={closeAuthWindows} />}
+        {isRegisterWindow && <AuthWindow loginEmail={loginEmail.length > 0 ? loginEmail : null} loginMode={false} onClose={closeAuthWindows} />}
     </>
 }
 

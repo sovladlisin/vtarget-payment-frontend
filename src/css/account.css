@@ -1,0 +1,93 @@
+
+.acc-manage-container {
+    width: 1100px;
+    padding: 20px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 15px;
+  }
+  .acc-manage-header {
+    display: table;
+    width: calc(100% - 40px);
+    margin-bottom: 25px;
+    box-shadow: 0 1px 0 gainsboro;
+    height: 70px;
+    padding: 0 20px;
+  }
+  .acc-manage-title {
+    float: left;
+    font-size: 16pt;
+    font-weight: bold;
+    height: 70px;
+    line-height: 70px;
+  }
+  .acc-manage-logout {
+    display: block;
+    float: right;
+    font-size: 9pt;
+    height: 70px;
+  }
+  .acc-manage-change-email-container {
+    position: relative;
+    margin: 10px 20px;
+  }
+  .acc-manage-change-email-container span {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    font-size: 10pt;
+    text-align: center;
+    color: #768099;
+  }
+  .acc-manage-change-email-container input {
+    background: #f3f6ff;
+    border-radius: 50px;
+    padding: 5px 40px;
+    font-size: 10pt;
+    height: 30px;
+    color: #768099;
+    width: 300px;
+  }
+  .acc-manage-change-password-container input {
+    background: #f3f6ff;
+    border-radius: 50px;
+    padding: 5px 40px;
+    font-size: 10pt;
+    height: 30px;
+    color: #768099;
+    width: 300px;
+  }
+  .acc-manage-change-password-container span {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    font-size: 9pt;
+    text-align: center;
+    color: #768099;
+  }
+  .acc-manage-change-password-container {
+    position: relative;
+    margin: 10px 20px;
+  }
+  
+.acc-manage-inputs-separator {
+    padding: 15px 20px;
+    font-weight: bold;
+  }
+  .acc-manage-change-password {
+    margin: 25px 20px;
+    border-radius: 50px;
+    font-size: 9pt;
+    height: 40px;
+    display: block;
+    background: #386bee;
+    box-shadow: 0 1px 4px #386beea6;
+    color: white;
+    width: 215px;
+  }

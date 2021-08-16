@@ -26,10 +26,23 @@ export const CabinetSelectForm: React.FunctionComponent<ICabinetSelectFormProps>
         props.onClose()
     }
 
+    const renderWallet = () => {
+        var className = 'cab-cabinet-select-form-item'
+        className = props.selected === null ? className + ' cab-cabinet-select-form-item-selected' : className
+
+        return <>
+            <div className={className} onClick={_ => onSelect(null)}>
+                <div className='cab-cabinet-select-form-item-status'><span><i style={{ color: 'gainsboro' }} className="fas fa-circle"></i></span></div>
+                <p className='cab-cabinet-select-form-item-name'>{'Персональный счет'}</p>
+            </div>
+        </>
+    }
+
     return <>
         <div className='cab-cabinet-select-form-container' ref={ref}>
             <p className='cab-cabinet-select-form-title'>Выберите кабинет</p>
             <div className='cab-cabinet-select-form-itemlist'>
+                {renderWallet()}
                 {props.cabinets.map(c => {
                     var status_color = getCabinetStatusColor(c.status)
 
@@ -42,6 +55,7 @@ export const CabinetSelectForm: React.FunctionComponent<ICabinetSelectFormProps>
                         </div>
                     </>
                 })}
+
             </div>
         </div>
     </>
@@ -71,7 +85,7 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (advertCheck && offerCheck && amount > 0 && email.length > 0 && selectedCabinet) {
+        if (advertCheck && offerCheck && amount > 0 && email.length > 0) {
             dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
             props.onClose()
         }
@@ -108,7 +122,7 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
                                     <span><i style={{ color: 'gainsboro' }} className="fas fa-circle"></i></span>
                                 </div>
                                 <p className={'cab-money-add-cabinet-select-menu-item-name' + mobileClass}>
-                                    Кабинет не выбран
+                                    Персональный счет
                                 </p>
                             </div>
                         </>}
@@ -148,11 +162,11 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
                         <label>Сумма пополнения</label>
                         <p>{convertMoney(amount)}</p>
                         <label>Бонусы</label>
-                        <p>{convertMoney(amount * 0.15)}</p>
+                        <p>{convertMoney(Math.floor(amount * 0.1))}</p>
                         <label>Итого к зачислению</label>
-                        <p className='color-green'>{convertMoney(amount + amount * 0.15)}</p>
+                        <p className='color-green'>{convertMoney(amount + Math.floor(amount * 0.1))}</p>
                     </div>
-                    {advertCheck && offerCheck && amount > 0 && email.length > 0 && selectedCabinet ? <>
+                    {advertCheck && offerCheck && amount > 0 && email.length > 0 ? <>
                         <button type="submit" value="Submit" className={'cab-money-add-submit' + mobileClass}>
                             Пополнить
                         </button>

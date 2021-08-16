@@ -109,3 +109,42 @@
     width: 50px;
     padding: 0 !important;
   }
+  
+.ws-body-container.mobile {
+  width: 90%;
+  padding: 5px;
+}
+.ws-body-container-secondary-title.mobile {
+  font-size: 11pt;
+}
+.ws-body-container.mobile a {
+  width: 90%;
+}
+.ws-body-workspace-link-text-area-title.mobile {
+  font-size: 9pt;
+}
+.ws-body-workspace-link-logo.mobile {
+  width: 20px;
+}
+.ws-body-workspace-link.mobile {
+  grid-template-columns: 20px auto 20px;
+  gap: 10px;
+}
+.ws-body-workspace-link-text-area-status.mobile {
+  font-size: 7pt;
+}
+.ws-body-workspace-link-arrow.mobile {
+  width: 20px;
+  font-size: 11pt;
+}
+
+.ws-header-back.mobile {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  font-size: 11pt;
+}
+.ws-header.mobile > a {
+  width: 50px;
+  height: 50px;
+}

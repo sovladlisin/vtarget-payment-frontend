@@ -31,6 +31,10 @@ const Workspace: React.FunctionComponent<IWorkspaceProps> = (props) => {
     const [isMobileNavWindow, setIsMobileNavWindow] = useState(false)
     const mobileNavRef = React.useRef()
     useOnClickOutside(mobileNavRef, () => setIsMobileNavWindow(false))
+
+    const getName = () => authState.user.vk_profile ? authState.user.vk_profile.name : authState.user.username
+    const getPicture = () => authState.user.vk_profile ? authState.user.vk_profile.photo : 'http://mymbs.co.id/public/upload/image/user/user.png'
+
     return <>
         <div className={'ws-container' + mobileClass}>
             <div className={'ws-header' + mobileClass}>
@@ -49,10 +53,10 @@ const Workspace: React.FunctionComponent<IWorkspaceProps> = (props) => {
                     <div className={'ws-header-account' + mobileClass}>
                         {authState.user.is_online && <>
                             <div className={'ws-header-account-info' + mobileClass}>
-                                <p className={'ws-header-account-name' + mobileClass}>Здравствуйте, <span>{authState.user.username}</span></p>
+                                <p className={'ws-header-account-name' + mobileClass}>Здравствуйте, <span>{getName()}</span></p>
                                 <p className={'ws-header-account-role' + mobileClass}>{authState.user.is_admin ? 'Администратор' : 'Пользователь'}</p>
                             </div>
-                            <img src={authState.user.vk_profile ? authState.user.vk_profile.photo : 'http://mymbs.co.id/public/upload/image/user/user.png'}></img>
+                            <Link to='/credentials'><img src={getPicture()}></img></Link>
                         </>}
                     </div>
                 </div>
