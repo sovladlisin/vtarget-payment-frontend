@@ -93,6 +93,10 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
     const [mobileClass, setMobileClass] = React.useState(isMobile ? ' mobile' : '')
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
+    const goToCabinet = (id: number) => {
+        window.open('https://vk.com/ads?act=office&union_id=' + id, '_blank');
+    }
+
     return <>
         <div className={'cab-container' + mobileClass}>
             <div className={'cab-header' + mobileClass}>
@@ -171,7 +175,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                                         <button title='Пополнить баланс' onClick={_ => setCabinetOnMoneyAddition(c)}><i className='far fa-credit-card'></i></button>
                                         <button title='Переместить баланс' onClick={_ => setCabinetOnMoneyTransfer(c)}><i className='fas fa-exchange-alt'></i></button>
                                         <button title='Настройка участников' onClick={_ => setCabinetOnPermissionsEdit(c)}><i className='far fa-id-badge'></i></button>
-                                        <button title='Подробнее' onClick={_ => dispatch(createAlert({ message: 'Функция в реализации', type: 'notification' }))}><i className='fas fa-chevron-circle-right'></i></button>
+                                        <button title='Подробнее' onClick={_ => goToCabinet(c.id)}><i className='fas fa-chevron-circle-right'></i></button>
                                     </div>
                                 </>
                             })}
