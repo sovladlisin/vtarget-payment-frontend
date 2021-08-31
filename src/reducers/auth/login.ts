@@ -1,4 +1,4 @@
-import { AuthDispatchTypes, GET_ALL_USERS, GET_USER_MEDALS, LOGIN, LOGOUT, TUser, UPDATE_VK_PROFILE } from "../../actions/auth/types";
+import { AuthDispatchTypes, CHANGE_WALLET, GET_ALL_USERS, GET_USER_MEDALS, LOGIN, LOGOUT, TUser, UPDATE_VK_PROFILE } from "../../actions/auth/types";
 import { URL } from "../../utils";
 
 interface IDefaultState {
@@ -14,7 +14,8 @@ const defaultState: IDefaultState = {
         username: '',
         is_admin: false,
         is_online: false,
-        vk_profile: null
+        vk_profile: null,
+        wallet: 0
     }
 
 }
@@ -53,7 +54,11 @@ const authReducer = (state: IDefaultState = defaultState, action: AuthDispatchTy
             window.location.replace(URL);
             return defaultState
 
-
+        case CHANGE_WALLET:
+            return {
+                ...state,
+                user: { ...state.user, wallet: action.payload.is_adding === 0 ? state.user.wallet - action.payload.amount : state.user.wallet + action.payload.amount }
+            }
         default:
             return state;
     }

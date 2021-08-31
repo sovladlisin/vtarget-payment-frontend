@@ -1,5 +1,5 @@
 import { AlertDispatchTypes, CLEAR_ALERTS, CREATE_ALERT } from "../../actions/alerts/types"
-import { CREATE_CABINET, DELETE_CABINET, GET_CABINETS, GET_VK_USER_INFO, TCabinet, TCabinetDispatchTypes, TCabinetUser, UPDATE_CABINET_META, UPDATE_CABINET_PERMS } from "../../actions/cabinets/types"
+import { CREATE_CABINET, DELETE_CABINET, GET_CABINETS, GET_VK_USER_INFO, TCabinet, TCabinetDispatchTypes, TCabinetUser, TRANSFER_WITH_WALLET, TRANSWER_WITH_CLIENTS, UPDATE_CABINET_META, UPDATE_CABINET_PERMS, UPDATE_CLIENT_AMOUNT } from "../../actions/cabinets/types"
 
 interface IDefaultState {
     cabinets: TCabinet[],
@@ -42,6 +42,37 @@ export const cabinetReducer = (state: IDefaultState = DefaultState, action: TCab
             return {
                 ...state,
                 selected_vk_user: action.payload
+            }
+        case TRANSWER_WITH_CLIENTS:
+            var new_cabinets = [...state.cabinets]
+            new_cabinets = new_cabinets.map(c => {
+                if (c.id === action.payload.client_id_from) return { ...c, all_limit: c.all_limit - action.payload.amount }
+                if (c.id === action.payload.client_id_to) return { ...c, all_limit: c.all_limit + action.payload.amount }
+                return c
+            })
+            return {
+                ...state,
+                cabinets: new_cabinets
+            }
+        case TRANSFER_WITH_WALLET:
+            var new_cabinets = [...state.cabinets]
+            new_cabinets = new_cabinets.map(c => {
+                if (c.id === action.payload.client_id) return { ...c, all_limit: action.payload.is_adding === 0 ? c.all_limit + action.payload.amount : c.all_limit - action.payload.amount }
+                return c
+            })
+            return {
+                ...state,
+                cabinets: new_cabinets
+            }
+        case UPDATE_CLIENT_AMOUNT:
+            var new_cabinets = [...state.cabinets]
+            new_cabinets = new_cabinets.map(c => {
+                if (c.id === action.payload.client_id) return { ...c, all_limit: action.payload.is_adding === 0 ? c.all_limit - action.payload.amount : c.all_limit - action.payload.amount }
+                return c
+            })
+            return {
+                ...state,
+                cabinets: new_cabinets
             }
         default:
             return state

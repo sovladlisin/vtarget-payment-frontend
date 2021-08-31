@@ -13,6 +13,7 @@ import MoneyTransferForm from './MoneyTransferForm';
 import { isMobile } from 'react-device-detect';
 import CabinetMetaForm from './CabinetMetaForm';
 import CabinetPermissionsForm from './CabinetPermissionsForm';
+import { updateAccountInfo } from '../../../actions/auth/login';
 
 interface ICabinetsProps {
 }
@@ -97,6 +98,8 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
         window.open('https://vk.com/ads?act=office&union_id=' + id, '_blank');
     }
 
+    useEffect(() => { dispatch(updateAccountInfo()) }, [])
+
     return <>
         <div className={'cab-container' + mobileClass}>
             <div className={'cab-header' + mobileClass}>
@@ -160,7 +163,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                                         <div className={'cab-body-cabinet-item-status' + mobileClass}><span><i style={{ color: status_color }} className="fas fa-circle"></i></span></div>
                                         <p className={'cab-body-cabinet-item-title' + mobileClass}>{c.name}</p>
                                         <div className={'cab-body-cabinet-item-input' + mobileClass}>
-                                            <p>{convertMoney(c.balance)}</p>
+                                            <p>{convertMoney(c.all_limit)}</p>
                                             <span>Внесено</span>
                                         </div>
                                         <div className={'cab-body-cabinet-item-spent' + mobileClass}>
@@ -168,7 +171,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                                             <span>Потрачено</span>
                                         </div>
                                         <div className={'cab-body-cabinet-item-left' + mobileClass}>
-                                            <p>{convertMoney(c.balance - c.spent)}</p>
+                                            <p>{convertMoney(c.all_limit - c.spent)}</p>
                                             <span>Осталось</span>
                                         </div>
                                         <button title='Редактировать кабинет' onClick={_ => setCabinetOnEdit(c)}><i className='fas fa-pen'></i></button>

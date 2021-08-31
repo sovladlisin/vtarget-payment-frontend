@@ -1,4 +1,4 @@
-import { INIT_PAYMENT, TPayment, TPaymentDispatchTypes } from "../../actions/payment/types"
+import { GET_PAYMENTS, INIT_PAYMENT, TPayment, TPaymentDispatchTypes } from "../../actions/payment/types"
 
 interface IDefaultState {
     payments: TPayment[]
@@ -11,10 +11,15 @@ const DefaultState: IDefaultState = {
 export const paymentReducer = (state: IDefaultState = DefaultState, action: TPaymentDispatchTypes): IDefaultState => {
     switch (action.type) {
         case INIT_PAYMENT:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 payments: [...state.payments, action.payload]
+            }
+        case GET_PAYMENTS:
+            return {
+                ...state,
+                payments: action.payload
             }
         default:
             return state

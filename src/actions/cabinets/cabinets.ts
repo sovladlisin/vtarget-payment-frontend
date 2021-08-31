@@ -1,9 +1,11 @@
 import axios from "axios"
 import { Dispatch } from "react"
-import { SERVER_URL } from "../../utils"
+import { DEBUG, SERVER_URL } from "../../utils"
 import { AlertDispatchTypes, CREATE_ALERT } from "../alerts/types"
 import { withToken } from "../auth/login"
-import { CREATE_CABINET, DELETE_CABINET, GET_CABINETS, GET_VK_USER_INFO, TCabinet, TCabinetDispatchTypes, TCabinetUser, UPDATE_CABINET_META, UPDATE_CABINET_PERMS } from "./types"
+import { AuthDispatchTypes, CHANGE_WALLET } from "../auth/types"
+
+import { CREATE_CABINET, DELETE_CABINET, GET_CABINETS, GET_VK_USER_INFO, TCabinet, TCabinetDispatchTypes, TCabinetUser, TRANSFER_WITH_WALLET, TRANSWER_WITH_CLIENTS, UPDATE_CABINET_META, UPDATE_CABINET_PERMS } from "./types"
 
 
 export const getCabinets = () => (dispatch: Dispatch<TCabinetDispatchTypes | AlertDispatchTypes>) => {
@@ -28,6 +30,8 @@ export const getCabinets = () => (dispatch: Dispatch<TCabinetDispatchTypes | Ale
             payload: res.data
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }
@@ -49,6 +53,8 @@ export const createCabinet = (name: string, day_limit: number, all_limit: number
             payload: { type: 'success', message: 'Кабинет успешно создан.' }
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }
@@ -67,6 +73,8 @@ export const updateCabinetMeta = (id: number, name: string, day_limit: number, a
             payload: { type: 'success', message: 'Кабинет успешно обновлен.' }
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }
@@ -85,6 +93,8 @@ export const updateCabinetPermissions = (id: number, permissions: TCabinetUser[]
             payload: { type: 'success', message: 'Кабинет успешно обновлен.' }
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }
@@ -103,6 +113,8 @@ export const deleteCabinet = (id: number) => (dispatch: Dispatch<TCabinetDispatc
             payload: { type: 'success', message: 'Кабинет успешно удален.' }
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }
@@ -118,6 +130,55 @@ export const getUserInfo = (id: string) => (dispatch: Dispatch<TCabinetDispatchT
             payload: { link: id, user: res.data }
         })
     }).catch(err => {
+        DEBUG && console.log(err)
+
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Возникла ошибка.' }
+        })
+    })
+}
+
+
+// ------------- TRANSFER ------------------
+
+export const transferWithWallet = (is_adding: 0 | 1, client_id: number, amount: number) => (dispatch: Dispatch<TCabinetDispatchTypes | AlertDispatchTypes | AuthDispatchTypes>) => {
+    const params = withToken()
+    axios.post(SERVER_URL + 'api/cabinets/transferWithWallet', JSON.stringify({ is_adding, client_id, amount }), params).then(res => {
+        dispatch({
+            type: TRANSFER_WITH_WALLET,
+            payload: { is_adding, client_id, amount }
+        })
+        dispatch({
+            type: CHANGE_WALLET,
+            payload: { is_adding, amount }
+        })
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'success', message: 'Средства были успешно перемещены.' }
+        })
+    }).catch(err => {
+        DEBUG && console.log(err)
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Возникла ошибка.' }
+        })
+    })
+}
+
+export const transferWithClient = (client_id_from: number, client_id_to: number, amount: number) => (dispatch: Dispatch<TCabinetDispatchTypes | AlertDispatchTypes>) => {
+    const params = withToken()
+    axios.post(SERVER_URL + 'api/cabinets/transferWithClients', JSON.stringify({ client_id_from, client_id_to, amount }), params).then(res => {
+        dispatch({
+            type: TRANSWER_WITH_CLIENTS,
+            payload: { client_id_from, client_id_to, amount }
+        })
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'success', message: 'Средства были успешно перемещены.' }
+        })
+    }).catch(err => {
+        DEBUG && console.log(err)
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Возникла ошибка.' }

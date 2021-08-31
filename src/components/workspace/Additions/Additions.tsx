@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPayments } from '../../../actions/payment/payment';
+import { PAYMENT_TYPES, TPayment } from '../../../actions/payment/types';
+import { RootStore } from '../../../store';
 import { convertMoney } from '../../../utils';
+import RefundForm from './RefundForm';
 
-
-type TAddition = {
-    date: Date,
-    amount: number,
-    status: 0 | 1 | 2,
-    type: 0 | 1
-}
 
 interface IAdditionsProps {
 }
@@ -17,29 +15,15 @@ interface IAdditionsProps {
 
 const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
 
-    const dummyAdditions: TAddition[] = [
-        { date: new Date(), amount: 458632, status: 1, type: 1 },
-        { date: new Date(), amount: 458632, status: 1, type: 0 },
-        { date: new Date(), amount: 458632, status: 2, type: 1 },
-        { date: new Date(), amount: 458632, status: 0, type: 1 },
-        { date: new Date(), amount: 458632, status: 2, type: 0 },
-        { date: new Date('2020-01-03'), amount: 458632, status: 2, type: 1 },
-        { date: new Date('2020-01-03'), amount: 458632, status: 1, type: 1 },
-        { date: new Date('2020-01-03'), amount: 458632, status: 2, type: 0 },
-        { date: new Date('2020-01-03'), amount: 458632, status: 1, type: 1 },
-        { date: new Date('2019-01-03'), amount: 458632, status: 2, type: 1 },
-        { date: new Date('2019-01-03'), amount: 458632, status: 2, type: 1 },
-        { date: new Date('2019-01-03'), amount: 458632, status: 0, type: 0 },
-        { date: new Date('2019-01-03'), amount: 458632, status: 2, type: 1 },
-    ]
+    const dispatch = useDispatch()
+    const paymentState = useSelector((state: RootStore) => state.payments)
 
     const [numberOfItems, setNumberOfItems] = React.useState(20)
     const [sortType, setSortType] = React.useState('date')
     const [sortOrder, setSortOrder] = React.useState(1)
     const [searchString, setSearchString] = React.useState('')
 
-    const [additionList, setAdditionList] = React.useState<TAddition[]>([])
-    const processAdditions = (additions: TAddition[]): { [key: string]: TAddition[] } => {
+    const processPayments = (payments: TPayment[]): { [key: string]: TPayment[] } => {
 
         const compare = (a, b) => {
             if (a[sortType] > b[sortType]) {
@@ -52,10 +36,10 @@ const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
             return 0;
         }
 
-        var result: { [key: string]: TAddition[] } = {}
-        additions.map(a => {
+        var result: { [key: string]: TPayment[] } = {}
+        payments.map(a => {
             const year = new Date(a.date).getFullYear()
-            var temp: TAddition[] = result[year]
+            var temp: TPayment[] = result[year]
             temp = temp ? temp : []
             temp.push(a)
             result[year] = temp
@@ -67,7 +51,10 @@ const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
         })
         return result
     }
-    useEffect(() => { setAdditionList(dummyAdditions) }, [])
+    useEffect(() => { dispatch(getPayments()) }, [])
+
+    const [hoveringPayment, setHoveringPayment] = React.useState(-1)
+    const [paymentToRefund, setPaymentToRefund] = React.useState<TPayment>(null)
 
     return <>
         <div className='additions-container'>
@@ -95,48 +82,58 @@ const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
                     <input onChange={e => setSearchString(e.target.value)} value={searchString}></input>
                 </div>
                 <div className='additions-body-item-list'>
-                    {Object.keys(processAdditions(additionList)).sort((a, b) => { return parseInt(b) - parseInt(a) }).map(year => {
-                        const list = processAdditions(additionList)
-                        const item = list[year]
-                        return <>
-                            <div className='additions-body-item-list-cluster'>
-                                <p className='additions-body-item-list-cluster-title'>{year}</p>
-                                {item.filter(a => JSON.stringify(a).toLocaleLowerCase().includes(searchString.toLocaleLowerCase())).map(addition => {
-                                    return <>
-                                        <div className='additions-body-item-list-item'>
-                                            <p className='additions-body-item-list-item-amount'>{convertMoney(addition.amount)}</p>
-                                            <p className='additions-body-item-list-item-date'>
-                                                <span>{addition.date.toLocaleDateString()}</span>
-                                                <span>{addition.date.toLocaleTimeString()}</span>
+                    {paymentState.payments && <>
+                        {Object.keys(processPayments(paymentState.payments)).sort((a, b) => { return parseInt(b) - parseInt(a) }).map(year => {
+                            const list = processPayments(paymentState.payments)
+                            const item = list[year]
+                            return <>
+                                <div className='additions-body-item-list-cluster'>
+                                    <p className='additions-body-item-list-cluster-title'>{year}</p>
+                                    {item.filter(a => JSON.stringify(a).toLocaleLowerCase().includes(searchString.toLocaleLowerCase())).map(addition => {
+                                        return <>
+                                            <div className='additions-body-item-list-item'>
+                                                <p className='additions-body-item-list-item-amount'>{convertMoney(addition.amount)}</p>
+                                                <p className='additions-body-item-list-item-date'>
+                                                    <span>{new Date(addition.date).toLocaleDateString()}</span>
+                                                    <span>{new Date(addition.date).toLocaleTimeString()}</span>
 
 
-                                            </p>
-                                            <div className={addition.type === 1 ? 'additions-body-item-list-item-type-1' : 'additions-body-item-list-item-type-0'}>
-                                                <i className='fas fa-chevron-circle-up'></i>
-                                                <p>{addition.type === 1 ? 'Прямое пополнение' : 'Стороннее пополнение'}</p>
+                                                </p>
+                                                <div className={1 ? 'additions-body-item-list-item-type-1' : 'additions-body-item-list-item-type-0'}>
+                                                    <i className='fas fa-chevron-circle-up'></i>
+                                                    <p>{1 ? 'Прямое пополнение' : 'Стороннее пополнение'}</p>
+                                                </div>
+                                                {addition.status === 'CONFIRMED' ? <div className='additions-body-item-list-item-status-0'>
+                                                    <i className='fas fa-check'></i>
+                                                    <p
+                                                        onMouseEnter={_ => setHoveringPayment(addition.id)}
+                                                        onMouseLeave={_ => setHoveringPayment(-1)}
+                                                        onClick={_ => setPaymentToRefund(addition)}
+                                                        className={'payment-success'}>
+                                                        {hoveringPayment === addition.id ? 'Отозвать' : 'Выполнено'}
+                                                    </p>
+                                                </div>
+                                                    :
+                                                    <div className={'additions-body-item-list-item-status-2 ' + PAYMENT_TYPES[addition.status].color}>
+                                                        <i className='fas fa-check'></i>
+                                                        <p title={PAYMENT_TYPES[addition.status].message}>{PAYMENT_TYPES[addition.status].message}</p>
+                                                    </div>
+                                                }
+
+
+
                                             </div>
-                                            {addition.status === 0 && <div className='additions-body-item-list-item-status-0'>
-                                                <i className='fas fa-check'></i>
-                                                <p>Выполнено</p>
-                                            </div>}
-                                            {addition.status === 1 && <div className='additions-body-item-list-item-status-1'>
-                                                <i className='fas fa-check'></i>
-                                                <p>В обработке</p>
-                                            </div>}
-                                            {addition.status === 2 && <div className='additions-body-item-list-item-status-2'>
-                                                <i className='fas fa-check'></i>
-                                                <p>Отклонено</p>
-                                            </div>}
-                                        </div>
-                                    </>
-                                })}
-                            </div>
-                        </>
-                    })}
+                                        </>
+                                    })}
+                                </div>
+                            </>
+                        })}
+                    </>}
+
                 </div>
             </div>
         </div>
-
+        {paymentToRefund && <RefundForm onClose={() => setPaymentToRefund(null)} payment={paymentToRefund} />}
     </>;
 };
 

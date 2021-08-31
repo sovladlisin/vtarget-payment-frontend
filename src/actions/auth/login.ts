@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { SERVER_URL, URL } from "../../utils";
+import { DEBUG, SERVER_URL, URL } from "../../utils";
 import { AuthDispatchTypes, GET_ALL_USERS, LOGIN, LOGOUT, TUser, UPDATE_VK_PROFILE } from "./types";
 import axios from "axios";
 import { AlertDispatchTypes, CREATE_ALERT } from "../alerts/types";
@@ -46,6 +46,8 @@ export const extractToken = () => (dispatch: Dispatch<AuthDispatchTypes>) => {
         })
         window.location.replace(URL + 'workspace_menu')
     }).catch((err) => {
+        DEBUG && console.log(err)
+
         console.log(err)
         // window.location.replace(URL);
     })
@@ -66,12 +68,33 @@ export const login = (username: string, password: string) => (dispatch: Dispatch
             console.log('2')
         }
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Неправильное имя пользователя или пароль.' }
         })
     })
 }
+
+export const updateAccountInfo = () => (dispatch: Dispatch<AuthDispatchTypes | AlertDispatchTypes>) => {
+    const params = withToken()
+    axios.get(SERVER_URL + 'api/auth/updateAccountInfo', params).then(res => {
+        if (res.data.response === 'Success') {
+            dispatch({
+                type: LOGIN,
+                payload: res.data
+            })
+        }
+    }).catch(err => {
+        DEBUG && console.log(err)
+        dispatch({
+            type: CREATE_ALERT,
+            payload: { type: 'error', message: 'Не удалось обновить информацию об аккаунте.' }
+        })
+    })
+}
+
 
 export const changeEmailCredentials = (password: string, new_email: string) => (dispatch: Dispatch<AuthDispatchTypes | AlertDispatchTypes>) => {
     const params = withToken()
@@ -89,6 +112,8 @@ export const changeEmailCredentials = (password: string, new_email: string) => (
             window.location.replace(URL + 'workspace_menu')
         }
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Неправильно введен пароль.' }
@@ -111,6 +136,8 @@ export const changePasswordCredentials = (password: string, new_password: string
             window.location.replace(URL + 'workspace_menu')
         }
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Неправильно введен пароль.' }
@@ -133,6 +160,8 @@ export const register = (password: string, password2: string, email: string) => 
             window.location.replace(URL + 'workspace')
         }
     }).catch(err => {
+        DEBUG && console.log(err)
+
         dispatch({
             type: CREATE_ALERT,
             payload: { type: 'error', message: 'Пользователь с такой почтой уже существует.' }

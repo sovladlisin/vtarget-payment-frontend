@@ -6,6 +6,11 @@ export const DELETE_CABINET = 'DELETE_CABINET'
 
 export const GET_VK_USER_INFO = 'GET_VK_USER_INFO'
 
+export const TRANSFER_WITH_WALLET = 'TRANSFER_WITH_WALLET'
+export const TRANSWER_WITH_CLIENTS = 'TRANSWER_WITH_CLIENTS'
+
+export const UPDATE_CLIENT_AMOUNT = 'UPDATE_CLIENT_AMOUNT'
+
 export type TCabinet = {
     id?: number,
     account_id: number,
@@ -50,6 +55,17 @@ interface IGetUser {
     type: typeof GET_VK_USER_INFO,
     payload: { link: string, user: TCabinetUser }
 }
+interface ITransferWithWallet {
+    type: typeof TRANSFER_WITH_WALLET
+    payload: { is_adding: number, client_id: number, amount: number }
+}
+interface ITransferWithClients {
+    type: typeof TRANSWER_WITH_CLIENTS
+    payload: { client_id_from: number, client_id_to: number, amount: number }
+}
+interface IUpdateClientAmount {
+    type: typeof UPDATE_CLIENT_AMOUNT,
+    payload: { client_id: number, is_adding: 0 | 1, amount: number }
+}
 
-
-export type TCabinetDispatchTypes = ICreateCabinet | IGetCabinets | IUpdateCabinetMeta | IDeleteCabinet | IGetUser | IUpdateCabinetPerms
+export type TCabinetDispatchTypes = IUpdateClientAmount | ICreateCabinet | IGetCabinets | IUpdateCabinetMeta | IDeleteCabinet | IGetUser | IUpdateCabinetPerms | ITransferWithClients | ITransferWithWallet

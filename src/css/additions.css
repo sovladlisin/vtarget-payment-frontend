@@ -1,192 +1,296 @@
 
 .additions-container {
-    width: 1000px;
-    margin: 20px auto;
-    max-height: 70%;
-    overflow: hidden;
-    border-radius: 20px;
-  }
-  .additions-header {
-    background: #4d75a3;
-    height: 60px;
-  }
-  .additions-header p {
-    float: left;
-    color: white;
-    line-height: 60px;
-    margin: 0 30px;
-    font-weight: bold;
-  }
-  .additions-body {
-    background: white;
-  }
-  .additions-body-nav {
-    height: 50px;
-    background: white;
-    padding: 20px;
-  }
-  .additions-body-nav p {
-    float: left;
-    height: 30px;
-    margin: 10px;
-    line-height: 30px;
-    font-size: 10pt;
-    text-align: right;
-  }
-  .additions-body-nav select {
-    background: #f4f7ff;
-    border-radius: 40px;
-    height: 30px;
-    margin: 10px;
-    font-size: 10pt;
-    color: #2a2929;
-    padding: 0 10px;
-    float: left;
-  }
-  .additions-body-nav input {
-    float: left;
-    height: 30px;
-    margin: 10px;
-    background: #f4f7ff;
-    border-radius: 30px;
-    padding-left: 10px;
-  }
-  .additions-body-item-list {
-    /*! max-height: 500px; */
-    width: calc(100% - 40px);
-    margin: 0 20px;
-    background: white;
-    /*! overflow: auto; */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-.additions-body-item-list-cluster-title {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    font-size: 16pt;
-    font-weight: bold;
-    box-shadow: 0 1px 0 gray;
-    color: #373737;
-    margin: 20px 0 0 0;
-  }
-  .additions-body-item-list-item {
-    height: 70px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    box-shadow: 0 1px 0 gainsboro;
-  }
-  .additions-body-item-list-item-amount {
-    height: 70px;
-    line-height: 70px;
-    padding: 0 15px;
-    font-size: 11pt;
-    font-weight: bold;
-    color: #393838;
-  }
+  width: 1000px;
+  margin: 20px auto;
+  max-height: 70%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.additions-header {
+  background: #4d75a3;
+  height: 60px;
+}
+.additions-header p {
+  float: left;
+  color: white;
+  line-height: 60px;
+  margin: 0 30px;
+  font-weight: bold;
+}
+.additions-body {
+  background: white;
+}
+.additions-body-nav {
+  height: 50px;
+  background: white;
+  padding: 20px;
+}
+.additions-body-nav p {
+  float: left;
+  height: 30px;
+  margin: 10px;
+  line-height: 30px;
+  font-size: 10pt;
+  text-align: right;
+}
+.additions-body-nav select {
+  background: #f4f7ff;
+  border-radius: 40px;
+  height: 30px;
+  margin: 10px;
+  font-size: 10pt;
+  color: #2a2929;
+  padding: 0 10px;
+  float: left;
+}
+.additions-body-nav input {
+  float: left;
+  height: 30px;
+  margin: 10px;
+  background: #f4f7ff;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+.additions-body-item-list {
+  /*! max-height: 500px; */
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  background: white;
+  /*! overflow: auto; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  .additions-body-item-list-item-date {
-    height: 70px;
-    line-height: 70px;
-  }
-  .additions-body-item-list-item-date span {
-    margin: 0 5px;
-    color: #2d4379;
-    font-size: 9pt;
-  }
-  .additions-body-item-list-item-type-1 {
-    height: 30px;
-    margin: 20px;
-    background: #5994d445;
-    border-radius: 50px;
-    line-height: 30px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    color: #204c7b;
-    font-size: 9pt;
-    width: 175px;
-    justify-content: left;
-  }
-  .additions-body-item-list-item-type-1 i {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .additions-body-item-list-item-type-0 {
-    height: 30px;
-    margin: 20px;
-    background: #ff336c66;
-    border-radius: 50px;
-    line-height: 30px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    color: #8c1c4c;
-    font-size: 9pt;
-    width: 175px;
-    justify-content: left;
-  }
-  .additions-body-item-list-item-type-0 i {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .additions-body-item-list-item-status-2 {
-    height: 30px;
-    margin: 20px;
-    background: #ff336c66;
-    border-radius: 50px;
-    line-height: 30px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    color: #8c1c4c;
-    font-size: 9pt;
-    width: 130px;
-    justify-content: left;
-  }
-  .additions-body-item-list-item-status-2 i {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .additions-body-item-list-item-status-1 {
-    height: 30px;
-    margin: 20px;
-    background: #5994d445;
-    border-radius: 50px;
-    line-height: 30px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    color: #204c7b;
-    font-size: 9pt;
-    width: 130px;
-    justify-content: left;
-  }
-  .additions-body-item-list-item-status-1 i {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
-  .additions-body-item-list-item-status-0 {
-    height: 30px;
-    margin: 20px;
-    background: #60fcba8c;
-    border-radius: 50px;
-    line-height: 30px;
-    display: grid;
-    grid-template-columns: 30px auto;
-    color: #196629;
-    font-size: 9pt;
-    width: 130px;
-    justify-content: left;
-  }
-  .additions-body-item-list-item-status-0 i {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    text-align: center;
-  }
+.additions-body-item-list-cluster-title {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16pt;
+  font-weight: bold;
+  box-shadow: 0 1px 0 gray;
+  color: #373737;
+  margin: 20px 0 0 0;
+}
+.additions-body-item-list-item {
+  height: 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  box-shadow: 0 1px 0 gainsboro;
+}
+.additions-body-item-list-item-amount {
+  height: 70px;
+  line-height: 70px;
+  padding: 0 15px;
+  font-size: 11pt;
+  font-weight: bold;
+  color: #393838;
+}
+
+.additions-body-item-list-item-date {
+  height: 70px;
+  line-height: 70px;
+}
+.additions-body-item-list-item-date span {
+  margin: 0 5px;
+  color: #2d4379;
+  font-size: 9pt;
+}
+.additions-body-item-list-item-type-1 {
+  height: 30px;
+  margin: 20px;
+  background: #5994d445;
+  border-radius: 50px;
+  line-height: 30px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  color: #204c7b;
+  font-size: 9pt;
+  width: 175px;
+  justify-content: left;
+}
+.additions-body-item-list-item-type-1 i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.additions-body-item-list-item-type-0 {
+  height: 30px;
+  margin: 20px;
+  background: #ff336c66;
+  border-radius: 50px;
+  line-height: 30px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  color: #8c1c4c;
+  font-size: 9pt;
+  width: 175px;
+  justify-content: left;
+}
+.additions-body-item-list-item-type-0 i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.additions-body-item-list-item-status-2 {
+  height: 30px;
+  margin: 20px;
+  background: #ff336c66;
+  border-radius: 50px;
+  line-height: 30px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  color: #8c1c4c;
+  font-size: 9pt;
+  width: 150px;
+  justify-content: left;
+}
+.additions-body-item-list-item-status-2 i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.additions-body-item-list-item-status-1 {
+  height: 30px;
+  margin: 20px;
+  background: #5994d445;
+  border-radius: 50px;
+  line-height: 30px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  color: #204c7b;
+  font-size: 9pt;
+  width: 130px;
+  justify-content: left;
+}
+.additions-body-item-list-item-status-1 i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.additions-body-item-list-item-status-0 {
+  height: 30px;
+  margin: 20px;
+  background: #60fcba8c;
+  border-radius: 50px;
+  line-height: 30px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  color: #196629;
+  font-size: 9pt;
+  width: 150px;
+  justify-content: left;
+}
+.additions-body-item-list-item-status-0 i {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.additions-body-item-list-item-status-0:hover {
+  background: #ff3d3d;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.refund-title {
+font-weight: bold;
+font-size: 15pt;
+margin: 0 0 30px 0;
+}
+.refund-sub-title {
+font-size: 10pt;
+width: 70%;
+color: #2d4379;
+margin: -15px 0 10px 0;
+}
+.refund-decs {
+font-size: 9pt;
+color: #2d4379;
+margin-top: 50px;
+}
+.refund-confirm {
+display: block;
+width: 45%;
+margin: 30px auto 0 auto;
+background: #386bee;
+color: white;
+box-shadow: 0 0 3px #386bee;
+border-radius: 50px;
+height: 40px;
+font-size: 10pt;
+}
+.refund-confirm.refund-confirm-false {
+background: #dee7ff;
+box-shadow: unset;
+color: #2d4379;
+opacity: 0.5;
+cursor: not-allowed !important;
+line-height: 40px;
+text-align: center;
+}
+
+.refund-id-input {
+width: calc(100% - 70px);
+background: #dee7ff;
+border-radius: 50px;
+padding: 5px 35px;
+font-size: 10pt;
+height: 30px;
+color: #3d496a;
+margin: 10px 0;
+}
+
+.additions-body-item-list-item-status-2 p {
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.additions-body-item-list-item-status-0 p {
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.redirect-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 300px;
+  width: 300px;
+}
+#root {
+}
+.redirect-container-icon-container {
+  width: 70px;
+  height: 70px;
+  color: white;
+  border-radius: 70px;
+  line-height: 70px;
+  text-align: center;
+  font-size: 22pt;
+  margin: 50px auto 20px auto;
+}
+.redirect-container-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 13pt;
+}
+.redirect-container-link {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 9pt;
+  margin: 0px auto;
+  width: 203px;
+  text-decoration: underline;
+}

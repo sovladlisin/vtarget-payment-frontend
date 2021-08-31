@@ -419,12 +419,14 @@ text-align: center;
 }
 
 .color-red {
-  color: #ff2e7c !important;
+  color: #ff3d3d !important;
 }
 .color-green {
   color: #18bf80 !important;
 }
-
+.bg-green {
+  background: #18bf80 !important;
+}
 .color-blue {
   color: #386bee !important;
 }
@@ -433,5 +435,17 @@ text-align: center;
   background: #4d75a3 !important;
 }
 .bg-red {
-  background: #ff2e7c !important;
+  background: #ff3d3d !important;
+}
+.bg-light-blue {
+  background: #5994d445 !important;
+}
+.color-deep-red {
+  color: #8c1c4c !important;
+}
+.color-deep-green {
+  color: #196629 !important;
+}
+.color-deep-blue {
+  color: #204c7b !important
 }

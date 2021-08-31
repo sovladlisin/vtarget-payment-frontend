@@ -2,7 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const URL = window.location.host.includes('localhost') ? "http://" + window.location.host + '/' : "https://" + window.location.host + '/'
-export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'https://vtarget-payment-server.herokuapp.com/'
+// export const SERVER_URL = window.location.host.includes('localhost') ? 'http://localhost:8000/' : 'https://vtarget-payment-server.herokuapp.com/'
+export const DEBUG = true
+
+export const SERVER_URL = 'https://vtarget-payment-server.herokuapp.com/'
+
 
 export const range = (n): number[] => {
     console.log(n)

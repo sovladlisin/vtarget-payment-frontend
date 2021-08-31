@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isMobile } from 'react-device-detect';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAlert } from '../../../actions/alerts/alerts';
+import { transferWithClient, transferWithWallet } from '../../../actions/cabinets/cabinets';
 import { TCabinet } from '../../../actions/cabinets/types';
 import { RootStore } from '../../../store';
 import { convertMoney, getCabinetStatusColor } from '../../../utils';
@@ -17,13 +18,16 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
     const dispatch = useDispatch()
 
     const cabinetState = useSelector((state: RootStore) => state.cabinets)
-
+    const authState = useSelector((state: RootStore) => state.auth)
     const onSubmit = (e) => {
         e.preventDefault()
-        if (cabinetTo && cabinetFrom && exchangeAmount <= cabinetFrom.balance - cabinetFrom.spent && cabinetFrom.id != cabinetTo.id) {
-            dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
+        if (exchangeAmount != 0 && exchangeAmountCheck() && vkRestrictionCheck()) {
+            if (!cabinetFrom && cabinetTo) dispatch(transferWithWallet(0, cabinetTo.id, exchangeAmount))
+            if (cabinetFrom && !cabinetTo) dispatch(transferWithWallet(1, cabinetFrom.id, exchangeAmount))
+            if (cabinetTo && cabinetFrom) dispatch(transferWithClient(cabinetFrom.id, cabinetTo.id, exchangeAmount))
             props.onClose()
         }
+
 
     }
 
@@ -47,9 +51,31 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
     React.useEffect(() => { setMobileClass(isMobile ? ' mobile' : '') }, [isMobile])
 
     const exchangeAmountCheck = () => {
-        if (cabinetFrom && exchangeAmount > 0 && exchangeAmount > cabinetFrom.balance - cabinetFrom.spent)
+        // between clients
+        if (cabinetFrom && cabinetTo && exchangeAmount > 0 && exchangeAmount < cabinetFrom.all_limit - cabinetFrom.spent)
             return true
-        if (!cabinetFrom && exchangeAmount > 0 && exchangeAmount > 4305621)
+
+        // to wallet
+        if (cabinetFrom && !cabinetTo && exchangeAmount > 0 && exchangeAmount < cabinetFrom.all_limit - cabinetFrom.spent)
+            return true
+
+        // from wallet
+        if (!cabinetFrom && cabinetTo && exchangeAmount > 0 && exchangeAmount < authState.user.wallet)
+            return true
+        return false
+    }
+
+    const vkRestrictionCheck = () => {
+        // between clients
+        if (cabinetFrom && cabinetTo && cabinetTo.all_limit + exchangeAmount >= 100 && cabinetFrom.all_limit - exchangeAmount >= 100)
+            return true
+
+        // to wallet
+        if (cabinetFrom && !cabinetTo && cabinetFrom.all_limit - exchangeAmount >= 100)
+            return true
+
+        // from wallet
+        if (!cabinetFrom && cabinetTo && cabinetTo.all_limit + exchangeAmount >= 100)
             return true
         return false
     }
@@ -87,7 +113,7 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                                     </p>
                                 </div>
                                 <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
-                                    {convertMoney(cabinetFrom.balance - cabinetFrom.spent)}
+                                    {convertMoney(cabinetFrom.all_limit - cabinetFrom.spent)}
                                 </div>
                             </div>
                         </> : <>
@@ -101,7 +127,7 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                                     </p>
                                 </div>
                                 <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
-                                    {convertMoney(4305621)}
+                                    {convertMoney(authState.user.wallet)}
                                 </div>
                             </div>
                         </>}
@@ -132,7 +158,7 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                                 </div>
 
                                 <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
-                                    {convertMoney(cabinetTo.balance - cabinetTo.spent)}
+                                    {convertMoney(cabinetTo.all_limit - cabinetTo.spent)}
                                 </div>
                             </div>
                         </> : <>
@@ -146,7 +172,7 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                                     </p>
                                 </div>
                                 <div className={'cab-money-swap-cabinet-select-menu-item-money color-green' + mobileClass}>
-                                    {convertMoney(4305621)}
+                                    {convertMoney(authState.user.wallet)}
                                 </div>
                             </div>
                         </>}
@@ -163,15 +189,32 @@ const MoneyTransferForm: React.FunctionComponent<IMoneyTransferFormProps> = (pro
                         <span><i className="fas fa-exchange-alt"></i></span>
                         <input required value={exchangeAmount === 0 ? '' : exchangeAmount} onChange={e => setExchangeAmount(e.target.value === '' ? 0 : parseInt(e.target.value))} placeholder={'Сумма перевода (₽)' + mobileClass}></input>
 
-                        {exchangeAmountCheck()
-                            && <>
+                        {exchangeAmount === 0 ?
+                            <>
                                 <span className={'cab-money-swap-input-container-alert-text color-red' + mobileClass}>
-                                    Сумма перевода больше, чем доступно в кабинете
+                                    Сумма перевода не должна быть равна 0
                                 </span>
                                 <span className={'cab-money-swap-input-container-alert-icon color-red' + mobileClass}>
                                     <i className='fas fa-exclamation-circle'></i>
                                 </span>
-                            </>}
+                            </> : !exchangeAmountCheck() ?
+                                <>
+                                    <span className={'cab-money-swap-input-container-alert-text color-red' + mobileClass}>
+                                        Сумма перевода больше, чем доступно в кабинете
+                                    </span>
+                                    <span className={'cab-money-swap-input-container-alert-icon color-red' + mobileClass}>
+                                        <i className='fas fa-exclamation-circle'></i>
+                                    </span>
+                                </>
+                                : !vkRestrictionCheck() ? <>
+                                    <span className={'cab-money-swap-input-container-alert-text color-red' + mobileClass}>
+                                        Общий взнос кабинета не может быть уменьшен ниже 100
+                                    </span>
+                                    <span className={'cab-money-swap-input-container-alert-icon color-red' + mobileClass}>
+                                        <i className='fas fa-exclamation-circle'></i>
+                                    </span>
+                                </> : <></>
+                        }
 
 
                     </div>

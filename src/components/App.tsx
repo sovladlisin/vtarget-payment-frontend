@@ -8,6 +8,8 @@ import Workspace from './workspace/Workspace';
 import ConnectVkAccount from './auth/ConnectVkAccount';
 import WorkspaceCabinetSelector from './workspace/WorkspaceCabinetSelector';
 import AccountCredentials from './auth/AccountCredentials';
+import SuccessPaymentPage from './workspace/Additions/SuccessPaymentPage';
+import FailPaymentPage from './workspace/Additions/FailPaymentPage';
 
 
 const App: React.FC = () => {
@@ -25,6 +27,10 @@ const App: React.FC = () => {
                     <Route exact path="/connect_vk_account" component={ConnectVkAccount} />
 
                     <Route exact path="/credentials" component={AccountCredentials} />
+
+                    <Route exact path="/successPayment" component={SuccessPaymentPage} />
+                    <Route exact path="/failPayment" component={FailPaymentPage} />
+
 
 
                 </Switch>

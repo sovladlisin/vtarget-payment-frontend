@@ -7,7 +7,7 @@ export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_USER_MEDALS = 'GET_USER_MEDALS'
 
 export const UPDATE_VK_PROFILE = 'UPDATE_VK_PROFILE'
-
+export const CHANGE_WALLET = 'CHANGE_WALLET'
 export type TUser = {
     email: string,
     username: string,
@@ -16,7 +16,8 @@ export type TUser = {
     is_admin: boolean,
     id?: number,
 
-    vk_profile?: TVkProfile
+    vk_profile?: TVkProfile,
+    wallet: number
 }
 
 export type TVkProfile = {
@@ -46,6 +47,9 @@ interface IGetAllUsers {
     type: typeof GET_ALL_USERS,
     payload: TUser[]
 }
-
+interface IChangeWallet {
+    type: typeof CHANGE_WALLET,
+    payload: { is_adding: 0 | 1, amount: number }
+}
 export type AuthDispatchTypes = IGetAllUsers |
-    ILogin | ILogout | ICreateAlert | IUpdateVkProfile
+    ILogin | ILogout | ICreateAlert | IUpdateVkProfile | IChangeWallet
