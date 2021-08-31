@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createAlert } from '../../../actions/alerts/alerts';
+import { TCabinet } from '../../../actions/cabinets/types';
 import { getPayments } from '../../../actions/payment/payment';
 import { PAYMENT_TYPES, TPayment } from '../../../actions/payment/types';
 import { RootStore } from '../../../store';
@@ -17,6 +19,7 @@ const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
 
     const dispatch = useDispatch()
     const paymentState = useSelector((state: RootStore) => state.payments)
+    const cabinetState = useSelector((state: RootStore) => state.cabinets)
 
     const [numberOfItems, setNumberOfItems] = React.useState(20)
     const [sortType, setSortType] = React.useState('date')
@@ -108,7 +111,23 @@ const Additions: React.FunctionComponent<IAdditionsProps> = (props) => {
                                                     <p
                                                         onMouseEnter={_ => setHoveringPayment(addition.id)}
                                                         onMouseLeave={_ => setHoveringPayment(-1)}
-                                                        onClick={_ => setPaymentToRefund(addition)}
+                                                        onClick={_ => {
+                                                            var client_id = parseInt(addition.order_id.split('_')[1])
+                                                            var amount = parseInt(addition.order_id.split('_')[3])
+                                                            var client: TCabinet = cabinetState.cabinets.find(c => c.id === client_id)
+                                                            if (!client) {
+                                                                console.log('Client_Error')
+                                                                return;
+                                                            }
+                                                            var left = client.all_limit - client.spent
+
+                                                            if (amount > left) {
+                                                                dispatch(createAlert({ type: 'error', message: 'Средства на клиенте ' + client.name + ' уже были потрачены.' }))
+                                                            }
+                                                            else {
+                                                                setPaymentToRefund(addition)
+                                                            }
+                                                        }}
                                                         className={'payment-success'}>
                                                         {hoveringPayment === addition.id ? 'Отозвать' : 'Выполнено'}
                                                     </p>
