@@ -5,6 +5,7 @@ import { isMobile } from 'react-device-detect';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAlert } from '../../../actions/alerts/alerts';
 import { TCabinet } from '../../../actions/cabinets/types';
+import { initPayment } from '../../../actions/payment/payment';
 import { RootStore } from '../../../store';
 import { convertMoney, getCabinetStatusColor } from '../../../utils';
 import { useOnClickOutside } from '../../utils/HandleClickOutside';
@@ -70,6 +71,7 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
     const dispatch = useDispatch()
 
     const cabinetState = useSelector((state: RootStore) => state.cabinets)
+    const authState = useSelector((state: RootStore) => state.auth)
 
     const ref = useRef()
     useOnClickOutside(ref, () => { props.onClose() })
@@ -80,13 +82,17 @@ const MoneyAdditionForm: React.FunctionComponent<IMoneyAdditionFormProps> = (pro
     const [offerCheck, setOfferCheck] = useState(false)
     const [advertCheck, setAdvertCheck] = useState(false)
 
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState(authState.user.email)
     const [amount, setAmount] = useState(0)
 
     const onSubmit = (e) => {
         e.preventDefault()
         if (advertCheck && offerCheck && amount > 0 && email.length > 0) {
-            dispatch(createAlert({ message: 'Форма отправленна.', type: 'success' }))
+
+            const is_wallet = selectedCabinet ? 0 : 1
+            const client_id = selectedCabinet ? selectedCabinet.id : -1
+
+            dispatch(initPayment(amount, is_wallet, client_id, email))
             props.onClose()
         }
     }
