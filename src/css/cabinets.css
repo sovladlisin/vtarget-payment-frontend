@@ -759,3 +759,18 @@ margin: 10px;
 font-size: 9pt;
 color: #232222;
 }
+
+.cab-body-cabinet-item > a > button {
+  color: #2d4379;
+  height: 30px;
+  margin: 20px 0;
+  line-height: 30px;
+  width: 30px;
+  font-size: 11pt !important;
+}
+.cab-body-cabinet-item > a > button:hover {
+  background: #2d4379;
+  color: white;
+  transition: 0.3s;
+  border-radius: 50px;
+}

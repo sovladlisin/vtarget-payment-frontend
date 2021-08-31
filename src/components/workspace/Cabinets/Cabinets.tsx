@@ -178,7 +178,7 @@ const Cabinets: React.FunctionComponent<ICabinetsProps> = (props) => {
                                         <button title='Пополнить баланс' onClick={_ => setCabinetOnMoneyAddition(c)}><i className='far fa-credit-card'></i></button>
                                         <button title='Переместить баланс' onClick={_ => setCabinetOnMoneyTransfer(c)}><i className='fas fa-exchange-alt'></i></button>
                                         <button title='Настройка участников' onClick={_ => setCabinetOnPermissionsEdit(c)}><i className='far fa-id-badge'></i></button>
-                                        <button title='Подробнее' onClick={_ => goToCabinet(c.id)}><i className='fas fa-chevron-circle-right'></i></button>
+                                        <a target='_blank' href={'https://vk.com/ads?act=office&union_id=' + c.id}><button title='Переход в кабинет'><i className='fas fa-chevron-circle-right'></i></button></a>
                                     </div>
                                 </>
                             })}
